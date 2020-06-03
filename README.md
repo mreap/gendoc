@@ -6,5 +6,5 @@ Esta aplicación crea un menú lateral (sidebar) a partir de una carpeta inicial
 Inspirado en el utilitario de Linux tree:
 
 ```bash
-tree -H . &gt; menu.html
+tree -H . > menu.html
 ```
