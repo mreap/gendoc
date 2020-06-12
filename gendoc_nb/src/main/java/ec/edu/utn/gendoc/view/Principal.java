@@ -6,12 +6,15 @@
 package ec.edu.utn.gendoc.view;
 
 import ec.edu.utn.gendoc.model.Archivo;
+import ec.edu.utn.gendoc.model.CopiarDirectorio;
 import ec.edu.utn.gendoc.model.GenDocUtil;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,13 +25,23 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+    public static String dirpath = ".";
+
     public Principal() {
+
         initComponents();
-        String carpetaActual = System.getProperty("user.dir");
+
+        txtProyecto.setText("menu");
+        String carpetaActual = null;
+        String txtRutaPlantillaHTML1 = System.getProperty("user.dir") + "/plantillas/index3.html";
         System.out.println("Carpeta actual: " + carpetaActual);
-        txtCarpetaInicial.setText(carpetaActual);
-        txtRutaPlantillaHTML.setText(carpetaActual+"/plantillas/index3.html");
-        txtRutaArchivoResultado.setText(carpetaActual+"/menu.html");
+        txtCarpetaInicial.setText(System.getProperty("user.dir"));
+        txtRutaPlantillaHTML.setVisible(false);
+        txtIniciodestinocopia.setVisible(false);
+        btndestinoCopia.setVisible(false);
+        txtdestinocopia.setVisible(false);
+        txtRutaPlantillaHTML.setText(System.getProperty("user.dir") + "/plantillas/index3.html");
+        txtRutaArchivoResultado.setText(System.getProperty("user.dir") + "/" + txtProyecto.getText() + ".html");
     }
 
     /**
@@ -40,18 +53,61 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtCarpetaInicial = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        cmdGenerar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         txtRutaPlantillaHTML = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        txtCarpetaInicial = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtProyecto = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtRutaArchivoResultado = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        cbxTipoSave = new javax.swing.JComboBox<>();
+        cmdGenerar = new javax.swing.JButton();
         lblResultado = new javax.swing.JLabel();
+        btnBuscarRuta = new javax.swing.JButton();
+        btndestinoCopia = new javax.swing.JButton();
+        txtdestinocopia = new javax.swing.JTextField();
+        txtIniciodestinocopia = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        txtRutaPlantillaHTML.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRutaPlantillaHTMLActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         jLabel1.setText("Carpeta para escanear:");
+
+        txtCarpetaInicial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCarpetaInicialActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Nombre Proyecto:");
+
+        jLabel3.setText("Menu HTML resultado:");
+
+        txtRutaArchivoResultado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtRutaArchivoResultadoKeyReleased(evt);
+            }
+        });
+
+        jLabel2.setText("Como desea guardar:");
+
+        cbxTipoSave.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        cbxTipoSave.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Solo Menú", "Copiar Contenido" }));
+        cbxTipoSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxTipoSaveActionPerformed(evt);
+            }
+        });
 
         cmdGenerar.setText("Generar menú");
         cmdGenerar.addActionListener(new java.awt.event.ActionListener() {
@@ -60,71 +116,302 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Ruta plantilla HTML:");
-
-        jLabel3.setText("Menu HTML resultado:");
-
         lblResultado.setText("Resultado:");
+
+        btnBuscarRuta.setText("Buscar Carpeta");
+        btnBuscarRuta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarRutaActionPerformed(evt);
+            }
+        });
+
+        btndestinoCopia.setText("Carpeta Destino");
+        btndestinoCopia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndestinoCopiaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(29, 29, 29)
+                        .addComponent(cbxTipoSave, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(btndestinoCopia)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtdestinocopia, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtIniciodestinocopia, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(291, 291, 291)
+                                .addComponent(lblResultado))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(cmdGenerar)
+                                .addGap(363, 363, 363))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtRutaArchivoResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtProyecto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCarpetaInicial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnBuscarRuta)
+                        .addGap(6, 6, 6))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCarpetaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnBuscarRuta))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxTipoSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(btndestinoCopia)
+                    .addComponent(txtdestinocopia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIniciodestinocopia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtRutaArchivoResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(cmdGenerar)
+                .addGap(18, 18, 18)
+                .addComponent(lblResultado)
+                .addGap(40, 40, 40))
+        );
+
+        jButton2.setText("Regresar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblResultado)
-                    .addComponent(cmdGenerar)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtRutaPlantillaHTML, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                        .addComponent(txtCarpetaInicial, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(txtRutaArchivoResultado)))
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(txtRutaPlantillaHTML, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCarpetaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtRutaPlantillaHTML, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtRutaArchivoResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cmdGenerar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblResultado)
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtRutaPlantillaHTML, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addGap(30, 30, 30))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdGenerarActionPerformed
-        GenDocUtil gd=new GenDocUtil();
-        try {
-            gd.generarArchivoFinalHTML(txtCarpetaInicial.getText(), txtRutaPlantillaHTML.getText(), 
-                                  txtRutaArchivoResultado.getText());
-            Date fecha=new Date();
-            SimpleDateFormat sdf=new SimpleDateFormat("dd/M/yyyy hh:mm:ss");
-            lblResultado.setText("Resultado: menu HTML generado. "+sdf.format(fecha));
-            Archivo archivoRaiz=gd.escanearDirectorios(txtCarpetaInicial.getText());
-            gd.imprimirListadoArchivosEnConsola(archivoRaiz);
-        } catch (Exception ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+
+        GenDocUtil gd = new GenDocUtil();
+        if (txtCarpetaInicial.getText().equals(System.getProperty("user.dir"))) {
+            txtRutaArchivoResultado.setText(System.getProperty("user.dir") + "/" + txtProyecto.getText() + ".html");
+            if ((cbxTipoSave.getSelectedItem().toString()).equals("Solo Menú")) {
+
+                try {
+                    gd.generarArchivoFinalHTML(txtCarpetaInicial.getText(), txtRutaPlantillaHTML.getText(),
+                            txtRutaArchivoResultado.getText());
+                    Date fecha = new Date();
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy hh:mm:ss");
+                    lblResultado.setText("Resultado: menu HTML generado. " + sdf.format(fecha));
+                    Archivo archivoRaiz = gd.escanearDirectorios(txtCarpetaInicial.getText());
+                    gd.imprimirListadoArchivosEnConsola(archivoRaiz);
+                } catch (Exception ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if ((cbxTipoSave.getSelectedItem().toString()).equals("Copiar Contenido")) {
+                txtIniciodestinocopia.setText(System.getProperty("user.dir"));
+                try {
+                    gd.generarArchivoFinalHTML(txtCarpetaInicial.getText(), txtRutaPlantillaHTML.getText(),
+                            txtRutaArchivoResultado.getText());
+                    Date fecha = new Date();
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy hh:mm:ss");
+                    lblResultado.setText("Resultado: menu HTML generado. " + sdf.format(fecha));
+                    Archivo archivoRaiz = gd.escanearDirectorios(txtCarpetaInicial.getText());
+                    gd.imprimirListadoArchivosEnConsola(archivoRaiz);
+                } catch (Exception ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                System.out.println("ini" + txtIniciodestinocopia.getText());
+                System.out.println("fin" + txtdestinocopia.getText());
+                CopiarDirectorio cop = new CopiarDirectorio();
+                cop.copiarDirectorio(txtIniciodestinocopia.getText(), txtdestinocopia.getText());
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Seleccione un item");
+            }
+        } else {
+            if ((cbxTipoSave.getSelectedItem().toString()).equals("Solo Menú")) {
+
+                try {
+                    gd.generarArchivoFinalHTML(txtCarpetaInicial.getText(), txtRutaPlantillaHTML.getText(),
+                            txtRutaArchivoResultado.getText());
+                    Date fecha = new Date();
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy hh:mm:ss");
+                    lblResultado.setText("Resultado: menu HTML generado. " + sdf.format(fecha));
+                    Archivo archivoRaiz = gd.escanearDirectorios(txtCarpetaInicial.getText());
+                    gd.imprimirListadoArchivosEnConsola(archivoRaiz);
+                } catch (Exception ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if ((cbxTipoSave.getSelectedItem().toString()).equals("Copiar Contenido")) {
+                try {
+                    gd.generarArchivoFinalHTML(txtCarpetaInicial.getText(), txtRutaPlantillaHTML.getText(),
+                            txtRutaArchivoResultado.getText());
+                    Date fecha = new Date();
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy hh:mm:ss");
+                    lblResultado.setText("Resultado: menu HTML generado. " + sdf.format(fecha));
+                    Archivo archivoRaiz = gd.escanearDirectorios(txtCarpetaInicial.getText());
+                    gd.imprimirListadoArchivosEnConsola(archivoRaiz);
+                } catch (Exception ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                System.out.println("ini" + txtIniciodestinocopia.getText());
+                System.out.println("fin" + txtdestinocopia.getText());
+                CopiarDirectorio cop = new CopiarDirectorio();
+                cop.copiarDirectorio(txtIniciodestinocopia.getText(), txtdestinocopia.getText());
+//                JOptionPane.showMessageDialog(rootPane, "Copiado exitoso");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Seleccione un item");
+            }
         }
+
+
     }//GEN-LAST:event_cmdGenerarActionPerformed
+
+    private void txtRutaPlantillaHTMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutaPlantillaHTMLActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRutaPlantillaHTMLActionPerformed
+
+    private void txtCarpetaInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCarpetaInicialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCarpetaInicialActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Menu regresar = new Menu();
+        regresar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnBuscarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarRutaActionPerformed
+//        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new java.io.File("."));
+        String choosertitle = null;
+        chooser.setDialogTitle(choosertitle);
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        //
+        // disable the "All files" option.
+        //
+        chooser.setAcceptAllFileFilterUsed(false);
+        //    
+        if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            txtCarpetaInicial.setText("getCurrentDirectory(): "
+                    + chooser.getCurrentDirectory());
+            txtCarpetaInicial.setText(""
+                    + chooser.getSelectedFile());
+            txtRutaArchivoResultado.setText(""
+                    + chooser.getSelectedFile() + "/" + txtProyecto.getText() + ".html");
+            txtIniciodestinocopia.setText("" + chooser.getSelectedFile());
+        } else {
+            txtProyecto.setText("No Selection ");
+        }
+//        JFileChooser jf = new JFileChooser();
+//        jf.showOpenDialog(this);
+
+//        File archivo = jf.getSelectedFile();
+//        if (archivo != null) {
+//            txtProyecto.setText(jf.getSelectedFile().getAbsolutePath().toString());
+//        }
+//     JFileChooser jfc = new JFileChooser(dirpath);
+//     jfc.showOpenDialog(this);
+//    dirpath =jfc.getSelectedFile().getAbsolutePath().toString();
+//    
+//    txtProyecto.setText(dirpath);
+    }//GEN-LAST:event_btnBuscarRutaActionPerformed
+
+    private void txtRutaArchivoResultadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutaArchivoResultadoKeyReleased
+        // TODO add your handling code here:
+        txtRutaArchivoResultado.setText(txtRutaArchivoResultado.getText() + "/" + txtProyecto.getText() + ".html");
+    }//GEN-LAST:event_txtRutaArchivoResultadoKeyReleased
+
+    private void btndestinoCopiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndestinoCopiaActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new java.io.File("."));
+        String choosertitle = null;
+        chooser.setDialogTitle(choosertitle);
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        //
+        // disable the "All files" option.
+        //
+        chooser.setAcceptAllFileFilterUsed(false);
+        //    
+        if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+//            txtCarpetaInicial.setText("getCurrentDirectory(): "
+//                    + chooser.getCurrentDirectory());
+//            txtCarpetaInicial.setText(""
+//                    + chooser.getSelectedFile());
+            txtdestinocopia.setText(""
+                    + chooser.getSelectedFile());
+        } else {
+            txtProyecto.setText("No Selection ");
+        }
+    }//GEN-LAST:event_btndestinoCopiaActionPerformed
+
+    private void cbxTipoSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipoSaveActionPerformed
+        // TODO add your handling code here:
+        if(cbxTipoSave.getSelectedItem().toString().equals("Copiar Contenido")){
+        btndestinoCopia.setVisible(true);
+        }else{
+        btndestinoCopia.setVisible(false);
+        }
+    }//GEN-LAST:event_cbxTipoSaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,13 +449,22 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarRuta;
+    private javax.swing.JButton btndestinoCopia;
+    private javax.swing.JComboBox<String> cbxTipoSave;
     private javax.swing.JButton cmdGenerar;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblResultado;
     private javax.swing.JTextField txtCarpetaInicial;
+    private javax.swing.JTextField txtIniciodestinocopia;
+    private javax.swing.JTextField txtProyecto;
     private javax.swing.JTextField txtRutaArchivoResultado;
     private javax.swing.JTextField txtRutaPlantillaHTML;
+    private javax.swing.JTextField txtdestinocopia;
     // End of variables declaration//GEN-END:variables
 }
