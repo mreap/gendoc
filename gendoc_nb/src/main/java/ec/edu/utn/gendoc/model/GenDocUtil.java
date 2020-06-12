@@ -68,7 +68,7 @@ public class GenDocUtil {
         List<String> lineasHTML=new ArrayList<>();
         if(myFile.isDirectorio()){
             lineasHTML.add("<li>");
-            lineasHTML.add("<a href='#"+myFile.getNombre()+"Submenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'>"+myFile.getNombre()+"</a>");
+            lineasHTML.add("<a target=\"embed\" href='#"+myFile.getNombre()+"Submenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'>"+myFile.getNombre()+"</a>");
             lineasHTML.add("<ul class='collapse list-unstyled' id='"+myFile.getNombre()+"Submenu'>");
             for(Archivo mf:myFile.getArchivosHijos()){
                 List<String> lineas=printFiles(mf);
@@ -80,7 +80,7 @@ public class GenDocUtil {
         else{
             List<String> lineas=new ArrayList<>();
             lineas.add("<li>");
-            lineas.add("<a href='"+myFile.getRutaCompleta()+"'>"+myFile.getNombre()+"</a>");
+            lineas.add("<a target=\"embed\" href='"+myFile.getRutaCompleta()+"'>"+myFile.getNombre()+"</a>");
             lineas.add("</li>");
             return lineas;
         }
@@ -107,7 +107,7 @@ public class GenDocUtil {
         }
         else{
             List<String> lineas=new ArrayList<>();
-            lineas.add("<a href='"+archivoRaiz.getRutaCompleta()+"'>"+archivoRaiz.getNombre()+"</a>");
+            lineas.add("<a target=\"embed\" href='"+archivoRaiz.getRutaCompleta()+"'>"+archivoRaiz.getNombre()+"</a>");
             return lineas;
         }
         return lineasHTML;
