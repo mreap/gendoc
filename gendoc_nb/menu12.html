@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Men√∫ generado a partir de directorios</title>
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        /* Fixed sidenav, full height */
+        .sidenav {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        /* Style the sidenav links and the dropdown button */
+        .sidenav a,
+        .dropdown-btn {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #818181;
+            display: block;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            outline: none;
+        }
+
+        /* On mouse-over */
+        .sidenav a:hover,
+        .dropdown-btn:hover {
+            color: #f1f1f1;
+        }
+
+        /* Main content */
+        .main {
+            margin-left: 200px;
+            /* Same as the width of the sidenav */
+            font-size: 15px;
+            /* Increased text to enable scrolling */
+            padding: 0px 10px;
+        }
+
+        /* Add an active class to the active dropdown button */
+        .active {
+            background-color: green;
+            color: white;
+        }
+
+        /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+        .dropdown-container {
+            display: none;
+            background-color: #262626;
+            padding-left: 8px;
+        }
+
+        /* Optional: Style the caret down icon */
+        .fa-caret-down {
+            float: right;
+            padding-right: 8px;
+        }
+
+        /* Some media queries for responsiveness */
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidenav" id="sidenav">
+        <a href="#inicio">Inicio</a>
+        <a href="#ayuda">Ayuda</a>
+        <button class="dropdown-btn">Ejemplo menu
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+            <button class="dropdown-btn">Submenu
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-container">
+                <a href="#">Link 11</a>
+                <a href="#">Link 12</a>
+                <a href="#">Link 13</a>
+            </div>
+        </div>
+        <!-- aqui va el menu generado: -->
+        <!-- inicio gendoc -->
+<button class='dropdown-btn'>
+gendoc_nb<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\menu.html'>menu.html</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\menu12.html'>menu12.html</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\nbactions.xml'>nbactions.xml</a>
+<button class='dropdown-btn'>
+plantillas<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\plantillas\index.html'>index.html</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\plantillas\index2.html'>index2.html</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\plantillas\index3.html'>index3.html</a>
+</div>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\pom.xml'>pom.xml</a>
+<button class='dropdown-btn'>
+src<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<button class='dropdown-btn'>
+main<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<button class='dropdown-btn'>
+java<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<button class='dropdown-btn'>
+ec<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<button class='dropdown-btn'>
+edu<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<button class='dropdown-btn'>
+utn<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<button class='dropdown-btn'>
+gendoc<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<button class='dropdown-btn'>
+model<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\ec\edu\utn\gendoc\model\Archivo.java'>Archivo.java</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\ec\edu\utn\gendoc\model\BottonWeb.java'>BottonWeb.java</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\ec\edu\utn\gendoc\model\CopiarDirectorio.java'>CopiarDirectorio.java</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\ec\edu\utn\gendoc\model\GenDocUtil.java'>GenDocUtil.java</a>
+</div>
+<button class='dropdown-btn'>
+view<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\ec\edu\utn\gendoc\view\MarkText.form'>MarkText.form</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\ec\edu\utn\gendoc\view\MarkText.java'>MarkText.java</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\ec\edu\utn\gendoc\view\Menu.form'>Menu.form</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\ec\edu\utn\gendoc\view\Menu.java'>Menu.java</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\ec\edu\utn\gendoc\view\Principal.form'>Principal.form</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\ec\edu\utn\gendoc\view\Principal.java'>Principal.java</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<button class='dropdown-btn'>
+imagenes<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\imagenes\descarga3.png'>descarga3.png</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\imagenes\Descargar.png'>Descargar.png</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\imagenes\descargar2.png'>descargar2.png</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\imagenes\gestor.png'>gestor.png</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\imagenes\linux.png'>linux.png</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\imagenes\logo-software.png'>logo-software.png</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\imagenes\logo-utn.png'>logo-utn.png</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\imagenes\Mac.png'>Mac.png</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\imagenes\manual.png'>manual.png</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\imagenes\salir.png'>salir.png</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\imagenes\text.png'>text.png</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\imagenes\web.png'>web.png</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\imagenes\website.png'>website.png</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\src\main\java\imagenes\Windows.png'>Windows.png</a>
+</div>
+</div>
+</div>
+<button class='dropdown-btn'>
+test<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<button class='dropdown-btn'>
+java<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+</div>
+</div>
+</div>
+<button class='dropdown-btn'>
+target<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<button class='dropdown-btn'>
+classes<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\.netbeans_automatic_build'>.netbeans_automatic_build</a>
+<button class='dropdown-btn'>
+ec<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<button class='dropdown-btn'>
+edu<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<button class='dropdown-btn'>
+utn<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<button class='dropdown-btn'>
+gendoc<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<button class='dropdown-btn'>
+model<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\model\Archivo.class'>Archivo.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\model\BottonWeb$1.class'>BottonWeb$1.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\model\BottonWeb.class'>BottonWeb.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\model\CopiarDirectorio.class'>CopiarDirectorio.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\model\GenDocUtil.class'>GenDocUtil.class</a>
+</div>
+<button class='dropdown-btn'>
+view<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\view\MarkText$1.class'>MarkText$1.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\view\MarkText$2.class'>MarkText$2.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\view\MarkText$3.class'>MarkText$3.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\view\MarkText.class'>MarkText.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\view\Menu$1.class'>Menu$1.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\view\Menu$2.class'>Menu$2.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\view\Menu$3.class'>Menu$3.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\view\Menu$FondoPanel.class'>Menu$FondoPanel.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\view\Menu.class'>Menu.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\view\Principal$1.class'>Principal$1.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\view\Principal$2.class'>Principal$2.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\view\Principal$3.class'>Principal$3.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\view\Principal$4.class'>Principal$4.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\view\Principal$5.class'>Principal$5.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\view\Principal$6.class'>Principal$6.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\view\Principal$7.class'>Principal$7.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\view\Principal$8.class'>Principal$8.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\view\Principal$9.class'>Principal$9.class</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\classes\ec\edu\utn\gendoc\view\Principal.class'>Principal.class</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\gendoc_nb-0.1.jar'>gendoc_nb-0.1.jar</a>
+<button class='dropdown-btn'>
+generated-sources<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<button class='dropdown-btn'>
+annotations<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+</div>
+</div>
+<button class='dropdown-btn'>
+maven-archiver<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\maven-archiver\pom.properties'>pom.properties</a>
+</div>
+<button class='dropdown-btn'>
+maven-status<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<button class='dropdown-btn'>
+maven-compiler-plugin<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<button class='dropdown-btn'>
+compile<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<button class='dropdown-btn'>
+default-compile<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\maven-status\maven-compiler-plugin\compile\default-compile\createdFiles.lst'>createdFiles.lst</a>
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\maven-status\maven-compiler-plugin\compile\default-compile\inputFiles.lst'>inputFiles.lst</a>
+</div>
+</div>
+<button class='dropdown-btn'>
+testCompile<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<button class='dropdown-btn'>
+default-testCompile<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\maven-status\maven-compiler-plugin\testCompile\default-testCompile\inputFiles.lst'>inputFiles.lst</a>
+</div>
+</div>
+</div>
+</div>
+<button class='dropdown-btn'>
+test-classes<i class='fa fa-caret-down'></i>
+</button>
+<div class="dropdown-container">
+<a href='C:\Users\rober\OneDrive\Documentos\Practicas\sistemadocumentaciÛn\gendoc\gendoc_nb\target\test-classes\.netbeans_automatic_build'>.netbeans_automatic_build</a>
+</div>
+</div>
+</div>
+        <a href="#about">Acerca de</a>
+    </div>
+
+    <div class="main">
+        <button type="button" id="sidebarCollapse" class="btn btn-info">
+            <i class="fa fa-align-left"></i>
+            <span>Toggle Sidebar</span>
+        </button>
+        <h2>Sidebar Dropdown</h2>
+        <p>Click on the dropdown button to open the dropdown menu inside the side navigation.</p>
+        <p>This sidebar is of full height (100%) and always shown.</p>
+        <p>Some random text..</p>
+    </div>
+
+    <script>
+        /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        function myFunction() {
+            var x = document.getElementById("sidenav");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        } 
+    </script>
+
+</body>
+
+</html>
