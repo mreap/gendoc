@@ -12,8 +12,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Funciones asociadas al procesamiento de directorios para
- * generar un menu HTML para acceder a archivos.
+ * Funciones asociadas al procesamiento de directorios para generar un menu HTML
+ * para acceder a archivos.
+ *
  * @author mrea
  */
 public class GenDocUtil {
@@ -21,99 +22,120 @@ public class GenDocUtil {
     /**
      * Escanea un directorio y sus subdirectorios generando una estructura
      * jerarquica de archivos.
+     *
      * @param directorioInicial La carpeta inicial a escanear.
      * @return el nodo raiz de la estructura de archivos.
-     * @throws Exception 
+     * @throws Exception
      */
     public Archivo escanearDirectorios(String directorioInicial) throws Exception {
-        File directorio=new File(directorioInicial);
-        Archivo archivoRaiz=new Archivo(directorio.isDirectory(), directorio.getName(), directorio.getCanonicalPath());
-        if(archivoRaiz.isDirectorio()){
+        File directorio = new File(directorioInicial);
+        Archivo archivoRaiz = new Archivo(directorio.isDirectory(), directorio.getName(), directorio.getCanonicalPath());
+        String[] files = directorio.list();
+        if (archivoRaiz.isDirectorio()) {
             archivoRaiz.setArchivosHijos(escanearDirectoriosRecursivo(archivoRaiz.getRutaCompleta()));
         }
         return archivoRaiz;
     }
-    
-    private List<Archivo> escanearDirectoriosRecursivo(String directorioInicial) throws Exception {
-        List<Archivo> archivos=new ArrayList<>();
-        File directorio=new File(directorioInicial);
 
-        for(File f:directorio.listFiles()){
-            Archivo archivo=new Archivo(f.isDirectory(), f.getName(), f.getCanonicalPath());
-            if(archivo.isDirectorio())
+    private List<Archivo> escanearDirectoriosRecursivo(String directorioInicial) throws Exception {
+        List<Archivo> archivos = new ArrayList<>();
+        File directorio = new File(directorioInicial);
+
+        for (File f : directorio.listFiles()) {
+
+            Archivo archivo = new Archivo(f.isDirectory(), f.getName(), f.getCanonicalPath());
+
+            if (archivo.isDirectorio()) {
+
                 archivo.setArchivosHijos(escanearDirectoriosRecursivo(archivo.getRutaCompleta()));
-            archivos.add(archivo);
+
+            }
+            if ((f.getName().endsWith(".odt")) || (f.isDirectory() == true)) {
+
+                archivos.add(archivo);
+
+            }
         }
-        
         return archivos;
     }
+
+//    public boolean accept(File dir, String extension) {
+//        return dir.getName().endsWith(extension);
+//    }
     /**
      * Imprime en consola el listado de carpetas y archivos a partir de un nodo
      * raiz.
+     *
      * @param archivo El nodo raiz de la estructura.
      */
-    public void imprimirListadoArchivosEnConsola(Archivo archivo){
-        System.out.println(archivo.getRutaCompleta());
-        if(archivo.isDirectorio())
-            for(Archivo a:archivo.getArchivosHijos())
+    public void imprimirListadoArchivosEnConsola(Archivo archivo) {
+        //System.out.println(archivo.getRutaCompleta());
+        if (archivo.isDirectorio()) {
+            for (Archivo a : archivo.getArchivosHijos()) {
                 imprimirListadoArchivosEnConsola(a);
+            }
+        }
     }
+
     /**
-     * Version antigua de generacion de menu HTML, funciona con plantilla index.html
-     * Se mantiene para referencia.
+     * Version antigua de generacion de menu HTML, funciona con plantilla
+     * index.html Se mantiene para referencia.
+     *
      * @param myFile
-     * @return 
+     * @return
      */
-    public List<String> printFiles(Archivo myFile){
-        List<String> lineasHTML=new ArrayList<>();
-        if(myFile.isDirectorio()){
+    public List<String> printFiles(Archivo myFile) {
+        List<String> lineasHTML = new ArrayList<>();
+        if (myFile.isDirectorio()) {
             lineasHTML.add("<li>");
-            lineasHTML.add("<a target=\"embed\" href='#"+myFile.getNombre()+"Submenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'>"+myFile.getNombre()+"</a>");
-            lineasHTML.add("<ul class='collapse list-unstyled' id='"+myFile.getNombre()+"Submenu'>");
-            for(Archivo mf:myFile.getArchivosHijos()){
-                List<String> lineas=printFiles(mf);
+            lineasHTML.add("<a target=\"embed\" href='#" + myFile.getNombre() + "Submenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'>" + myFile.getNombre() + "</a>");
+            lineasHTML.add("<ul class='collapse list-unstyled' id='" + myFile.getNombre() + "Submenu'>");
+            for (Archivo mf : myFile.getArchivosHijos()) {
+                List<String> lineas = printFiles(mf);
                 lineasHTML.addAll(lineas);
             }
             lineasHTML.add("</ul>");
             lineasHTML.add("</li>");
-        }
-        else{
-            List<String> lineas=new ArrayList<>();
+        } else {
+            List<String> lineas = new ArrayList<>();
             lineas.add("<li>");
-            lineas.add("<a target=\"embed\" href='"+myFile.getRutaCompleta()+"'>"+myFile.getNombre()+"</a>");
+            lineas.add("<a target=\"embed\" href='" + myFile.getRutaCompleta() + "'>" + myFile.getNombre() + "</a>");
             lineas.add("</li>");
             return lineas;
         }
         return lineasHTML;
     }
+
     /**
      * Metodo recursivo que genera una estructura de menu HTML a partir de una
      * jerarquia de archivos.
+     *
      * @param archivoRaiz El nodo raiz de la jerarquia de archivos.
      * @return menu en formato HTML.
      */
-    public List<String> generarMenuHTML(Archivo archivoRaiz){
-        List<String> lineasHTML=new ArrayList<>();
-        if(archivoRaiz.isDirectorio()){
+    public List<String> generarMenuHTML(Archivo archivoRaiz) {
+        List<String> lineasHTML = new ArrayList<>();
+        if (archivoRaiz.isDirectorio()) {
             lineasHTML.add("<button class='dropdown-btn'>");
-            lineasHTML.add(archivoRaiz.getNombre()+"<i class='fa fa-caret-down'></i>");
+            lineasHTML.add(archivoRaiz.getNombre() + "<i class='fa fa-caret-down'></i>");
             lineasHTML.add("</button>");
             lineasHTML.add("<div class=\"dropdown-container\">");
-            for(Archivo mf:archivoRaiz.getArchivosHijos()){
-                List<String> lineas=generarMenuHTML(mf);
+            for (Archivo mf : archivoRaiz.getArchivosHijos()) {
+                List<String> lineas = generarMenuHTML(mf);
                 lineasHTML.addAll(lineas);
             }
             lineasHTML.add("</div>");
-        }
-        else{
-            List<String> lineas=new ArrayList<>();
-            lineas.add("<a target=\"embed\" href='"+archivoRaiz.getRutaCompleta()+"'>"+archivoRaiz.getNombre()+"</a>");
+        } else {
+            List<String> lineas = new ArrayList<>();
+            lineas.add("<a target=\"embed\" href='" + archivoRaiz.getRutaCompleta() + "'>" + archivoRaiz.getNombre() + "</a>");
             return lineas;
         }
         return lineasHTML;
     }
+
     /**
      * Lee todo el texto HTML desde un archivo.
+     *
      * @param rutaPlantillaHTML La ruta de la plantilla HTML.
      * @return La informacion HTML leida.
      */
@@ -146,8 +168,10 @@ public class GenDocUtil {
         }
         return lineas;
     }
+
     /**
      * Inserta el codigo del menu HTML en el codigo de una pagina HTML previa.
+     *
      * @param archivoRaiz Informacion raiz de la estructura de carpetas.
      * @param lineasHTML Informacion de la plantilla HTML inicial.
      * @return Totalidad del codigo HTML.
@@ -157,27 +181,27 @@ public class GenDocUtil {
         for (String linea : lineasHTML) {
             lineasProcesadas.add(linea);
             if (linea.contains("<!-- inicio gendoc -->")) {
-                List<String> lineasMenu=new ArrayList<>();
-                lineasMenu=generarMenuHTML(archivoRaiz);
+                List<String> lineasMenu = new ArrayList<>();
+                lineasMenu = generarMenuHTML(archivoRaiz);
                 lineasProcesadas.addAll(lineasMenu);
             }
         }
         return lineasProcesadas;
     }
-    
-    
+
     /**
      * Genera el archivo HTML resultante de escanear carpetas y archivos.
+     *
      * @param directorioInicial
      * @param rutaPlantillaHTML
-     * @param rutaArchivoResultado 
+     * @param rutaArchivoResultado
      */
     public void generarArchivoFinalHTML(String directorioInicial, String rutaPlantillaHTML, String rutaArchivoResultado) {
         List<String> lineasHTML = null;
         List<String> lineasProcesadas = null;
         try {
             //recorrerDir(directorio, listaNombres);
-            Archivo myFile=escanearDirectorios(directorioInicial);
+            Archivo myFile = escanearDirectorios(directorioInicial);
             lineasHTML = leerHTMLDesdePlantilla(rutaPlantillaHTML);
             //lineasProcesadas = procesarInformacion(listaNombres, lineasHTML);
             lineasProcesadas = procesarInformacion(myFile, lineasHTML);
@@ -187,7 +211,7 @@ public class GenDocUtil {
             try {
                 archivo = new FileWriter(rutaArchivoResultado);
                 pw = new PrintWriter(archivo);
-                for (String linea:lineasProcesadas) {
+                for (String linea : lineasProcesadas) {
                     pw.println(linea);
                 }
             } catch (IOException e) {
