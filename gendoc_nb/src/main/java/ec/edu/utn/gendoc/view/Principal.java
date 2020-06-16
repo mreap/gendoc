@@ -9,8 +9,13 @@ import ec.edu.utn.gendoc.model.Archivo;
 import ec.edu.utn.gendoc.model.CopiarDirectorio;
 import ec.edu.utn.gendoc.model.GenDocUtil;
 import java.awt.Checkbox;
+import java.awt.Desktop;
 import java.awt.event.ComponentListener;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,9 +40,9 @@ public class Principal extends javax.swing.JFrame {
     List<String> extension = new ArrayList<String>();
     List<String> extenAgregada = new ArrayList<>();
     static String extencionHtml = ".html";
-
+    
     public Principal() {
-
+        
         initComponents();
         label1.setVisible(false);
         txtProyecto.setText("menu");
@@ -57,8 +62,9 @@ public class Principal extends javax.swing.JFrame {
         btnActualiEx.setVisible(false);
         btnCrearExt.setVisible(false);
         panelExtensiones.setVisible(false);
-        txtRutaPlantillaHTML.setText(System.getProperty("user.dir") + "/plantillas/index3.html");
+        //txtRutaPlantillaHTML.setText(System.getProperty("user.dir") + "/plantillas/index3.html");
         txtRutaArchivoResultado.setText(System.getProperty("user.dir") + "/" + txtProyecto.getText() + ".html");
+        btnAbrir.setVisible(false);
     }
 
     /**
@@ -107,6 +113,7 @@ public class Principal extends javax.swing.JFrame {
         cbxExtension = new javax.swing.JComboBox<>();
         btnEliminarExten = new javax.swing.JButton();
         btnActualiEx = new javax.swing.JButton();
+        btnAbrir = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -322,6 +329,13 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        btnAbrir.setText("Abrir Menú");
+        btnAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -337,7 +351,9 @@ public class Principal extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(cmdGenerar)
-                                .addGap(285, 285, 285))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAbrir)
+                                .addGap(194, 194, 194))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(291, 291, 291)
                                 .addComponent(lblResultado)
@@ -448,7 +464,9 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(txtRutaArchivoResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(cmdGenerar)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmdGenerar)
+                            .addComponent(btnAbrir))
                         .addGap(18, 18, 18)
                         .addComponent(lblResultado))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -499,7 +517,35 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdGenerarActionPerformed
-
+        
+        try {
+            //------------
+            File directorio = new File(""); //Creas un nuevo directorio a nivel de tu jar.
+            directorio.mkdirs();
+            directorio.setWritable(true);
+            //copias la direccion
+            String archivo = directorio.getCanonicalPath() + File.pathSeparator + "index3.html";
+            //nuevo archivo en esa direccion
+            File temp = new File(archivo);
+            InputStream is = this.getClass().getResourceAsStream("/ec/edu/utn/gendoc/view/index3.html");
+            FileOutputStream archivoDestino = new FileOutputStream(temp);
+            FileWriter fw = new FileWriter(temp);
+            byte[] buffer = new byte[512 * 1024];
+            //lees el archivo hasta que se acabe...
+            int nbLectura;
+            while ((nbLectura = is.read(buffer)) != -1) {
+                archivoDestino.write(buffer, 0, nbLectura);
+            }
+            //cierras el archivo,el inputS y el FileW
+            fw.close();
+            archivoDestino.close();
+            is.close();
+            //abres el archivo temporal   
+            txtRutaPlantillaHTML.setText(temp.getAbsolutePath());
+            temp.deleteOnExit();            
+        } catch (Exception e) {
+        }
+        
         if (chboxOdt.isSelected()) {
             extension.add(".odt");
         }
@@ -526,15 +572,15 @@ public class Principal extends javax.swing.JFrame {
                 extension.add(extenAgregada.get(i));
             }
         }
-
+        
         GenDocUtil gd = new GenDocUtil();
         if (txtCarpetaInicial.getText().equals(System.getProperty("user.dir"))) {
             txtRutaArchivoResultado.setText(System.getProperty("user.dir") + "/" + txtProyecto.getText() + ".html");
             if ((cbxTipoSave.getSelectedItem().toString()).equals("Solo Menú")) {
-
+                
                 try {
                     gd.generarArchivoFinalHTML(txtCarpetaInicial.getText(), txtRutaPlantillaHTML.getText(),
-                            txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString());
+                            txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString(), txtProyecto.getText());
                     Date fecha = new Date();
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy hh:mm:ss");
                     lblResultado.setText("Resultado: menu HTML generado. " + sdf.format(fecha));
@@ -544,14 +590,14 @@ public class Principal extends javax.swing.JFrame {
                     Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else if ((cbxTipoSave.getSelectedItem().toString()).equals("Copiar Contenido")) {
-
+                
                 try {
                     if (txtdestinocopia.getText().equals("")) {
                         JOptionPane.showMessageDialog(rootPane, "No selecciono el destino de la copia");
                     } else {
                         txtIniciodestinocopia.setText(System.getProperty("user.dir"));
                         gd.generarArchivoFinalHTML(txtCarpetaInicial.getText(), txtRutaPlantillaHTML.getText(),
-                                txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString());
+                                txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString(), txtProyecto.getText());
                         Date fecha = new Date();
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy hh:mm:ss");
                         lblResultado.setText("Resultado: menu HTML generado. " + sdf.format(fecha));
@@ -564,18 +610,18 @@ public class Principal extends javax.swing.JFrame {
                 System.out.println("ini" + txtIniciodestinocopia.getText());
                 System.out.println("fin" + txtdestinocopia.getText());
                 CopiarDirectorio cop = new CopiarDirectorio();
-
+                
                 cop.copiarDirectorio(txtIniciodestinocopia.getText(), txtdestinocopia.getText(), extension, cbxExtension.getSelectedItem().toString());
-
+                
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Seleccione un item Para guardat");
             }
         } else {
             if ((cbxTipoSave.getSelectedItem().toString()).equals("Solo Menú")) {
-
+                
                 try {
                     gd.generarArchivoFinalHTML(txtCarpetaInicial.getText(), txtRutaPlantillaHTML.getText(),
-                            txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString());
+                            txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString(), txtProyecto.getText());
                     Date fecha = new Date();
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy hh:mm:ss");
                     lblResultado.setText("Resultado: menu HTML generado. " + sdf.format(fecha));
@@ -590,7 +636,7 @@ public class Principal extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane, "No selecciono el destino de la copia");
                     } else {
                         gd.generarArchivoFinalHTML(txtCarpetaInicial.getText(), txtRutaPlantillaHTML.getText(),
-                                txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString());
+                                txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString(), txtProyecto.getText());
                         Date fecha = new Date();
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy hh:mm:ss");
                         lblResultado.setText("Resultado: menu HTML generado. " + sdf.format(fecha));
@@ -609,8 +655,8 @@ public class Principal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Seleccione un item");
             }
         }
-
-
+        
+        btnAbrir.setVisible(true);
     }//GEN-LAST:event_cmdGenerarActionPerformed
 
     private void txtRutaPlantillaHTMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutaPlantillaHTMLActionPerformed
@@ -679,7 +725,7 @@ public class Principal extends javax.swing.JFrame {
             panelExtensiones.setVisible(false);
             btnExtensionNueva.setVisible(false);
         }
-
+        
         JFileChooser chooser = new JFileChooser();
         chooser.setCurrentDirectory(new java.io.File("."));
         String choosertitle = null;
@@ -706,7 +752,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (cbxTipoSave.getSelectedItem().toString().equals("Copiar Contenido")) {
             btndestinoCopia.setVisible(true);
-
+            
         } else {
             btndestinoCopia.setVisible(false);
             panelExtensiones.setVisible(false);
@@ -736,7 +782,7 @@ public class Principal extends javax.swing.JFrame {
             strCadena += extenAgregada.get(i) + "\n";
         }
         txtResultadoExtensionA.setText(strCadena);
-
+        
     }
 
     private void btnCrearExtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearExtActionPerformed
@@ -793,11 +839,11 @@ public class Principal extends javax.swing.JFrame {
         try {
             txtResultadoExtensionA.setText("Extensión Eliminada: " + (extenAgregada.get(extenAgregada.size() - 1)));
             extenAgregada.remove(extenAgregada.size() - 1);
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "No tiene más elementos");
         }
-
+        
 
     }//GEN-LAST:event_btnEliminarExtenActionPerformed
 
@@ -805,6 +851,16 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         ImprimirExtenciones();
     }//GEN-LAST:event_btnActualiExActionPerformed
+
+    private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
+        // TODO add your handling code here:
+        try {
+            File path = new File(txtRutaArchivoResultado.getText());
+            Desktop.getDesktop().open(path);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnAbrirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -842,6 +898,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnActualiEx;
     private javax.swing.JButton btnBuscarRuta;
     private javax.swing.JButton btnCrearExt;
