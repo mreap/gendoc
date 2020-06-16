@@ -171,6 +171,14 @@ public class GenDocUtil {
             lineasHTML.add("</div>");                                    
         return lineasHTML;
     }    
+    
+    public List<String> generarLogo(Archivo archivoRaiz){
+             List<String> lineasHTML=new ArrayList<>();       
+            lineasHTML.add("<div align=\"right\">");
+            lineasHTML.add("<img src="+getClass().getResource("/ec/edu/utn/gendoc/imagenes/logo_csoft.png")+" width=\"100\" height=\"100\">");
+            lineasHTML.add("</div>");                                    
+        return lineasHTML;
+    } 
 
     /**
      * Lee todo el texto HTML desde un archivo.
@@ -227,6 +235,10 @@ public class GenDocUtil {
                 List<String> lineasTitulo=new ArrayList<>();
                 lineasTitulo=generarTitulo(archivoRaiz, TituloMenu);
                 lineasProcesadas.addAll(lineasTitulo);
+            }else if(linea.contains("<!-- inicio logo -->")){
+                List<String> lineasLogo=new ArrayList<>();
+                lineasLogo=generarLogo(archivoRaiz);
+                lineasProcesadas.addAll(lineasLogo);
             }
         }
         return lineasProcesadas;
