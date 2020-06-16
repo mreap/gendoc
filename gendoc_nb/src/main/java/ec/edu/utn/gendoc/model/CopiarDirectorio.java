@@ -12,6 +12,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -63,7 +65,7 @@ public class CopiarDirectorio {
 
     }
 
-    public void copiarDirectorio(String origen, String destino) {
+    public void copiarDirectorio(String origen, String destino, List<String> extension, String tipoG) {
         comprobarCrearDirectorio(destino);
         File directorio = new File(origen);
         File f;
@@ -78,32 +80,58 @@ public class CopiarDirectorio {
                     if (f.isDirectory()) {
                         comprobarCrearDirectorio(destino + File.separator + archivo + File.separator);
 
-                        copiarDirectorio(origen + File.separator + archivo + File.separator, destino + File.separator + archivo + File.separator);
+                        copiarDirectorio(origen + File.separator + archivo + File.separator, destino + File.separator + archivo + File.separator, extension, tipoG);
 
                     } else { //Es un archivo
-                        copiarArchivo(origen + File.separator + archivo, destino + File.separator + archivo);
+                        copiarArchivo(origen + File.separator + archivo, destino + File.separator + archivo, extension, tipoG);
+
                     }
                 }
             }
         }
     }
 
-    public void copiarArchivo(String sOrigen, String sDestino) {
+    public void copiarArchivo(String sOrigen, String sDestino, List<String> extension, String tipoG) {
         try {
             File origen = new File(sOrigen);
             File destino = new File(sDestino);
-            InputStream in = new FileInputStream(origen);
-            OutputStream out = new FileOutputStream(destino);
-
-            byte[] buf = new byte[1024];
-            int len;
-
-            while ((len = in.read(buf)) > 0) {
-                out.write(buf, 0, len);
+            List<String> extens = new ArrayList<String>();
+            for (int i = 0; i < extension.size(); i++) {
+                extens.add(extension.get(i));
             }
 
-            in.close();
-            out.close();
+            InputStream in = new FileInputStream(origen);
+            if (tipoG.equals("Generar Todas")) {
+                OutputStream out = new FileOutputStream(destino);
+
+                byte[] buf = new byte[1024];
+                int len;
+
+                while ((len = in.read(buf)) > 0) {
+                    out.write(buf, 0, len);
+                }
+
+                in.close();
+                out.close();
+            } else if (tipoG.equals("Seleccionar extensión")) {
+
+                for (int i = 0; i < extens.size(); i++) {
+                    if (origen.getName().endsWith(extens.get(i))) {
+                        OutputStream out = new FileOutputStream(destino);
+
+                        byte[] buf = new byte[1024];
+                        int len;
+
+                        while ((len = in.read(buf)) > 0) {
+                            out.write(buf, 0, len);
+                        }
+
+                        in.close();
+                        out.close();
+                        System.out.println("frfrfr" + extens.get(i));
+                    }
+                }
+            }
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

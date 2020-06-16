@@ -50,7 +50,7 @@ public class MarkText extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
         jLabel1.setText("Mark Text");
 
-        jButton3.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"/src/main/java/imagenes/salir.png"));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/utn/gendoc/imagenes/salir.png")));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -59,7 +59,7 @@ public class MarkText extends javax.swing.JFrame {
 
         bottonWeb1.setLink("https://marktext.app/");
 
-        bottonWeb3.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"/src/main/java/imagenes/website.png"));
+        bottonWeb3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/utn/gendoc/imagenes/website.png")));
         bottonWeb3.setLink("https://marktext.app/");
         bottonWeb3.setMaximumSize(new java.awt.Dimension(114, 128));
         bottonWeb3.setMinimumSize(new java.awt.Dimension(114, 128));
@@ -100,13 +100,13 @@ public class MarkText extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Linux");
 
-        bottonWeb5.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"/src/main/java/imagenes/Windows.png"));
+        bottonWeb5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/utn/gendoc/imagenes/Windows.png")));
         bottonWeb5.setLink("https://github.com/marktext/marktext/releases/latest/download/marktext-setup.exe");
 
-        bottonWeb2.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"/src/main/java/imagenes/Mac.png"));
+        bottonWeb2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/utn/gendoc/imagenes/Mac.png")));
         bottonWeb2.setLink("https://github.com/marktext/marktext/releases/latest/download/marktext.dmg");
 
-        bottonWeb4.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"/src/main/java/imagenes/linux.png"));
+        bottonWeb4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/utn/gendoc/imagenes/linux.png")));
         bottonWeb4.setLink("https://github.com/marktext/marktext/releases/latest/download/marktext-x86_64.AppImage");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -163,8 +163,7 @@ public class MarkText extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(148, 148, 148)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel3))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(bottonWeb3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)

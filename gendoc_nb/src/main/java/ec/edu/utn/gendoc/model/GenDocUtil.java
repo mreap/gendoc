@@ -27,35 +27,66 @@ public class GenDocUtil {
      * @return el nodo raiz de la estructura de archivos.
      * @throws Exception
      */
-    public Archivo escanearDirectorios(String directorioInicial) throws Exception {
+    public Archivo escanearDirectorios(String directorioInicial, List<String> extension, String TipoG) throws Exception {
         File directorio = new File(directorioInicial);
         Archivo archivoRaiz = new Archivo(directorio.isDirectory(), directorio.getName(), directorio.getCanonicalPath());
         String[] files = directorio.list();
         if (archivoRaiz.isDirectorio()) {
-            archivoRaiz.setArchivosHijos(escanearDirectoriosRecursivo(archivoRaiz.getRutaCompleta()));
+            archivoRaiz.setArchivosHijos(escanearDirectoriosRecursivo(archivoRaiz.getRutaCompleta(), extension, TipoG));
         }
         return archivoRaiz;
     }
 
-    private List<Archivo> escanearDirectoriosRecursivo(String directorioInicial) throws Exception {
+    private List<Archivo> escanearDirectoriosRecursivo(String directorioInicial, List<String> extension, String TipoG) throws Exception {
         List<Archivo> archivos = new ArrayList<>();
+        List<String> extens = new ArrayList<String>();
+//        for (int i = 0; i < extension.size(); i++) {
+//            extens.add(extension.get(i));
+//            System.out.println("dede: " + extension.get(i));
+
         File directorio = new File(directorioInicial);
 
-        for (File f : directorio.listFiles()) {
+        if (TipoG.equals("Generar Todas")) {
+            for (File f : directorio.listFiles()) {
+                Archivo archivo = new Archivo(f.isDirectory(), f.getName(), f.getCanonicalPath());
 
-            Archivo archivo = new Archivo(f.isDirectory(), f.getName(), f.getCanonicalPath());
+                if (archivo.isDirectorio()) {
 
-            if (archivo.isDirectorio()) {
+                    archivo.setArchivosHijos(escanearDirectoriosRecursivo(archivo.getRutaCompleta(), extension, TipoG));
 
-                archivo.setArchivosHijos(escanearDirectoriosRecursivo(archivo.getRutaCompleta()));
-
-            }
-            if ((f.getName().endsWith(".odt")) || (f.isDirectory() == true)) {
+                }
 
                 archivos.add(archivo);
 
             }
+        } else if (TipoG.equals("Seleccionar extensión")) {
+            for (File f : directorio.listFiles()) {
+                Archivo archivo = new Archivo(f.isDirectory(), f.getName(), f.getCanonicalPath());
+
+                for (int i = 0; i < extension.size(); i++) {
+                    if (archivo.isDirectorio()) {
+
+                        archivo.setArchivosHijos(escanearDirectoriosRecursivo(archivo.getRutaCompleta(), extension, TipoG));
+
+                    }
+
+                    if (f.getName().endsWith(extension.get(i)) || (f.isDirectory() == true)) {
+                        if (f.isDirectory()) {
+                            if (f.getName().equals(archivo.getNombre())) {
+                                archivos.remove(archivo);
+                                archivos.add(archivo);
+                            }
+                        } else if (f.isFile()) {
+                            archivos.add(archivo);
+
+                        }
+
+                    }
+                }
+            }
         }
+
+//        }
         return archivos;
     }
 
@@ -196,12 +227,12 @@ public class GenDocUtil {
      * @param rutaPlantillaHTML
      * @param rutaArchivoResultado
      */
-    public void generarArchivoFinalHTML(String directorioInicial, String rutaPlantillaHTML, String rutaArchivoResultado) {
+    public void generarArchivoFinalHTML(String directorioInicial, String rutaPlantillaHTML, String rutaArchivoResultado, List<String> extension, String TipoG) {
         List<String> lineasHTML = null;
         List<String> lineasProcesadas = null;
         try {
             //recorrerDir(directorio, listaNombres);
-            Archivo myFile = escanearDirectorios(directorioInicial);
+            Archivo myFile = escanearDirectorios(directorioInicial, extension, TipoG);
             lineasHTML = leerHTMLDesdePlantilla(rutaPlantillaHTML);
             //lineasProcesadas = procesarInformacion(listaNombres, lineasHTML);
             lineasProcesadas = procesarInformacion(myFile, lineasHTML);
@@ -223,10 +254,12 @@ public class GenDocUtil {
                     }
                 } catch (Exception e2) {
                     e2.printStackTrace();
+
                 }
             }
         } catch (Exception ex) {
-            Logger.getLogger(GenDocUtil.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GenDocUtil.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

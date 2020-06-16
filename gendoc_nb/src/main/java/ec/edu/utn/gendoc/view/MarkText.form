@@ -42,7 +42,6 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
@@ -130,7 +129,7 @@
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;)+&quot;/src/main/java/imagenes/salir.png&quot;)" type="code"/>
+          <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/ec/edu/utn/gendoc/imagenes/salir.png&quot;))" type="code"/>
         </Property>
       </Properties>
       <Events>
@@ -145,7 +144,7 @@
     <Component class="ec.edu.utn.gendoc.model.BottonWeb" name="bottonWeb3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;)+&quot;/src/main/java/imagenes/website.png&quot;)" type="code"/>
+          <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/ec/edu/utn/gendoc/imagenes/website.png&quot;))" type="code"/>
         </Property>
         <Property name="link" type="java.lang.String" value="https://marktext.app/"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -287,7 +286,7 @@
         <Component class="ec.edu.utn.gendoc.model.BottonWeb" name="bottonWeb5">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;)+&quot;/src/main/java/imagenes/Windows.png&quot;)" type="code"/>
+              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/ec/edu/utn/gendoc/imagenes/Windows.png&quot;))" type="code"/>
             </Property>
             <Property name="link" type="java.lang.String" value="https://github.com/marktext/marktext/releases/latest/download/marktext-setup.exe"/>
           </Properties>
@@ -295,7 +294,7 @@
         <Component class="ec.edu.utn.gendoc.model.BottonWeb" name="bottonWeb2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;)+&quot;/src/main/java/imagenes/Mac.png&quot;)" type="code"/>
+              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/ec/edu/utn/gendoc/imagenes/Mac.png&quot;))" type="code"/>
             </Property>
             <Property name="link" type="java.lang.String" value="https://github.com/marktext/marktext/releases/latest/download/marktext.dmg"/>
           </Properties>
@@ -303,7 +302,7 @@
         <Component class="ec.edu.utn.gendoc.model.BottonWeb" name="bottonWeb4">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;)+&quot;/src/main/java/imagenes/linux.png&quot;)" type="code"/>
+              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/ec/edu/utn/gendoc/imagenes/linux.png&quot;))" type="code"/>
             </Property>
             <Property name="link" type="java.lang.String" value="https://github.com/marktext/marktext/releases/latest/download/marktext-x86_64.AppImage"/>
           </Properties>
