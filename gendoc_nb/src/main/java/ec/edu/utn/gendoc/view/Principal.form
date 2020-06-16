@@ -422,7 +422,7 @@
             </Component>
             <Component class="javax.swing.JCheckBox" name="chbxHtml">
               <Properties>
-                <Property name="text" type="java.lang.String" value=".xlsx"/>
+                <Property name="text" type="java.lang.String" value=".html"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chbxHtmlActionPerformed"/>

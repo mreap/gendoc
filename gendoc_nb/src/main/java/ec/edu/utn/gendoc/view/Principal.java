@@ -194,7 +194,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        chbxHtml.setText(".xlsx");
+        chbxHtml.setText(".html");
         chbxHtml.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chbxHtmlActionPerformed(evt);
@@ -545,12 +545,15 @@ public class Principal extends javax.swing.JFrame {
             temp.deleteOnExit();            
         } catch (Exception e) {
         }
-        
+        extenAgregada.clear();
+        extension.clear();
+        txtRutaArchivoResultado.setText(""
+                    + txtCarpetaInicial.getText() + "/" + txtProyecto.getText() + ".html");
         if (chboxOdt.isSelected()) {
             extension.add(".odt");
         }
         if (chbxHtml.isSelected()) {
-            extension.add(".xlsx");
+            extension.add(".html");
         }
         if (chbxTxt.isSelected()) {
             extension.add(".txt");
@@ -564,9 +567,9 @@ public class Principal extends javax.swing.JFrame {
         if (chbxPdf.isSelected()) {
             extension.add(".pdf");
         }
-        if (extencionHtml.equals(".html")) {
-            extension.add(".html");
-        }
+//        if (extencionHtml.equals(".html")) {
+//            extension.add(".html");
+//        }
         if (extenAgregada.size() > 0) {
             for (int i = 0; i < extenAgregada.size(); i++) {
                 extension.add(extenAgregada.get(i));
@@ -611,7 +614,7 @@ public class Principal extends javax.swing.JFrame {
                 System.out.println("fin" + txtdestinocopia.getText());
                 CopiarDirectorio cop = new CopiarDirectorio();
                 
-                cop.copiarDirectorio(txtIniciodestinocopia.getText(), txtdestinocopia.getText(), extension, cbxExtension.getSelectedItem().toString());
+                cop.copiarDirectorio(txtIniciodestinocopia.getText(), txtdestinocopia.getText(), extension, cbxExtension.getSelectedItem().toString(), txtProyecto.getText());
                 
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Seleccione un item Para guardat");
@@ -649,7 +652,7 @@ public class Principal extends javax.swing.JFrame {
                 System.out.println("ini" + txtIniciodestinocopia.getText());
                 System.out.println("fin" + txtdestinocopia.getText());
                 CopiarDirectorio cop = new CopiarDirectorio();
-                cop.copiarDirectorio(txtIniciodestinocopia.getText(), txtdestinocopia.getText(), extension, cbxExtension.getSelectedItem().toString());
+                cop.copiarDirectorio(txtIniciodestinocopia.getText(), txtdestinocopia.getText(), extension, cbxExtension.getSelectedItem().toString(), txtProyecto.getText());
 //                JOptionPane.showMessageDialog(rootPane, "Copiado exitoso");
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Seleccione un item");
@@ -691,8 +694,8 @@ public class Principal extends javax.swing.JFrame {
                     + chooser.getCurrentDirectory());
             txtCarpetaInicial.setText(""
                     + chooser.getSelectedFile());
-            txtRutaArchivoResultado.setText(""
-                    + chooser.getSelectedFile() + "/" + txtProyecto.getText() + ".html");
+//            txtRutaArchivoResultado.setText(""
+//                    + chooser.getSelectedFile() + "/" + txtProyecto.getText() + ".html");
             txtIniciodestinocopia.setText("" + chooser.getSelectedFile());
         } else {
             txtProyecto.setText("No Selection ");
