@@ -175,7 +175,7 @@ public class GenDocUtil {
     public List<String> generarLogo(Archivo archivoRaiz){
              List<String> lineasHTML=new ArrayList<>();       
             lineasHTML.add("<div align=\"right\">");
-            lineasHTML.add("<img src="+getClass().getResource("/ec/edu/utn/gendoc/imagenes/logo_csoft.png")+" width=\"100\" height=\"100\">");
+            lineasHTML.add(" <img src=\"https://i.ibb.co/BGtGykQ/logo-csoft.png\" width=\"100\" height=\"100\">");
             lineasHTML.add("</div>");                                    
         return lineasHTML;
     } 
