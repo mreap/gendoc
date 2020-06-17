@@ -251,7 +251,7 @@ public class GenDocUtil {
      * @param rutaPlantillaHTML
      * @param rutaArchivoResultado
      */
-    public void generarArchivoFinalHTML(String directorioInicial, String rutaPlantillaHTML, String rutaArchivoResultado, List<String> extension, String TipoG, String TituloMenu) {
+    public void generarArchivoFinalHTML(String directorioInicial, String rutaPlantillaHTML, String rutaArchivoResultado, List<String> extension, String TipoG,String TituloMenu) {
         List<String> lineasHTML = null;
         List<String> lineasProcesadas = null;
         try {
