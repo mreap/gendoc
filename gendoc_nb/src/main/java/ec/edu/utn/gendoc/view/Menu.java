@@ -5,8 +5,14 @@
  */
 package ec.edu.utn.gendoc.view;
 
+import java.awt.Desktop;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -57,6 +63,11 @@ public class Menu extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/utn/gendoc/imagenes/manual.png")));
         jButton1.setText("Manual de Markdown");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/utn/gendoc/imagenes/descargar2.png")));
@@ -209,6 +220,41 @@ public class Menu extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, mensaje, "Información", HEIGHT);
         
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+          try {
+             File directorio = new File(""); //Creas un nuevo directorio a nivel de tu jar.
+            directorio.mkdirs();
+            directorio.setWritable(true);
+            //copias la direccion
+            String archivo = directorio.getCanonicalPath() + File.pathSeparator + "ManualMarkdown.html";
+            //nuevo archivo en esa direccion
+            File temp = new File(archivo);
+            InputStream is = this.getClass().getResourceAsStream("/ec/edu/utn/gendoc/view/ManualMarkdown.html");
+            FileOutputStream archivoDestino = new FileOutputStream(temp);
+            FileWriter fw = new FileWriter(temp);
+            byte[] buffer = new byte[512 * 1024];
+            //lees el archivo hasta que se acabe...
+            int nbLectura;
+            while ((nbLectura = is.read(buffer)) != -1) {
+                archivoDestino.write(buffer, 0, nbLectura);
+            }
+            //cierras el archivo,el inputS y el FileW
+            fw.close();
+            archivoDestino.close();
+            is.close();
+            //abres el archivo temporal               
+            temp.deleteOnExit();       
+            File path = new File(temp.getAbsolutePath());
+            Desktop.getDesktop().open(path);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, "No se pudo encontrar el archivo", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
