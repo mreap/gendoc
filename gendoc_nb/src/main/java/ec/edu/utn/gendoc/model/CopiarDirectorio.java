@@ -137,7 +137,7 @@ public class CopiarDirectorio {
 
                             in.close();
                             out.close();
-                            System.out.println("frfrfr" + extens.get(i));
+//                            System.out.println("frfrfr" + extens.get(i));
                             
                         } 
                        
