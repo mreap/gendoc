@@ -3,11 +3,62 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>gendoc</groupId>
     <artifactId>gendoc_nb</artifactId>
-    <version>0.1</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+    <build>
+                           <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>ec.edu.utn.gendoc.view.Menu</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+      
+        </plugins>
+             
+      
+          
+        <resources>
+            <!-- Define un recurso -->
+            <resource>
+                <!-- Directorio del recurso dentro del proyecto Java -->
+                <directory>src/main/java/recursos</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/index3.html</include>
+                </includes>
+                <targetPath>ec/edu/utn/gendoc/view</targetPath>
+            </resource>
+            <resource>
+                <!-- Directorio del recurso dentro del proyecto Java -->
+                <directory>src/main/java/recursos</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/ManualMarkdown.html</include>
+                </includes>
+                <targetPath>ec/edu/utn/gendoc/view</targetPath>
+            </resource>       
+            <resource>
+                <!-- Directorio del recurso dentro del proyecto Java -->
+                <directory>src/main/java/imagenes</directory>
+                <filtering>true</filtering>
+                <!-- Destino que indica donde se han de copiar los recursos dentro del jar -->
+                <targetPath>ec/edu/utn/gendoc/imagenes</targetPath>
+            </resource>           
+            
+        </resources>
+    
+    </build>
 </project>

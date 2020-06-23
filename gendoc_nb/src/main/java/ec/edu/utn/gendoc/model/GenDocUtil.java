@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -147,6 +149,38 @@ public class GenDocUtil {
      */
     public List<String> generarMenuHTML(Archivo archivoRaiz) {
         List<String> lineasHTML = new ArrayList<>();
+        
+        Collections.sort(archivoRaiz.getArchivosHijos(), new Comparator<Archivo>() {
+            @Override
+            public int compare(Archivo p1, Archivo p2) {
+                if (p1.isDirectorio()) {
+                    return -1;
+                } else if (!p2.isDirectorio()) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        });
+
+        Collections.sort(archivoRaiz.getArchivosHijos(), new Comparator<Archivo>() {
+            @Override
+            public int compare(Archivo p1, Archivo p2) {
+                if (p1.isDirectorio() && p2.isDirectorio()) {
+                    
+                    if (!p1.equals(p2) && p1.equals(p1.getNombre())) {
+                        return -1;
+                    } else if (!p1.equals(p2) && p2.equals(p2.getNombre())) {
+                        return 1;
+                    } else {
+                        return p1.getNombre().compareTo(p2.getNombre());
+                    }
+
+                }
+                return 0;
+            }
+        });
+        
         if (archivoRaiz.isDirectorio()) {
             lineasHTML.add("<button class='dropdown-btn'>");
             lineasHTML.add(archivoRaiz.getNombre() + "<i class='fa fa-caret-down'></i>");
