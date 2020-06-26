@@ -49,7 +49,7 @@ public class Principal extends javax.swing.JFrame {
 
         initComponents();
         label1.setVisible(false);
-        txtProyecto.setText("menu");
+        txtMenuArchivoG.setText("menu");
         String carpetaActual = null;
         String txtRutaPlantillaHTML1 = System.getProperty("user.dir") + "/plantillas/index3.html";
         System.out.println("Carpeta actual: " + carpetaActual);
@@ -59,7 +59,9 @@ public class Principal extends javax.swing.JFrame {
         btndestinoCopia.setVisible(false);
         txtdestinocopia.setVisible(false);
         panelSecundarioExtens.setVisible(false);
+        labelEjemploExten.setVisible(false);
         txtExtensionN.setVisible(false);
+        txtRutaArchivoResultado.setVisible(false);
         txtResultadoExtensionA.setVisible(false);
         btnExtensionNueva.setVisible(false);
         btnEliminarExten.setVisible(false);
@@ -67,7 +69,7 @@ public class Principal extends javax.swing.JFrame {
         btnCrearExt.setVisible(false);
         panelExtensiones.setVisible(false);
         //txtRutaPlantillaHTML.setText(System.getProperty("user.dir") + "/plantillas/index3.html");
-        txtRutaArchivoResultado.setText(System.getProperty("user.dir") + "/" + txtProyecto.getText() + ".html");
+        txtRutaArchivoResultado.setText(System.getProperty("user.dir") + "/" + txtMenuArchivoG.getText() + ".html");
         btnAbrir.setVisible(false);
     }
 
@@ -85,7 +87,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtCarpetaInicial = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtProyecto = new javax.swing.JTextField();
+        txtMenuArchivoG = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtRutaArchivoResultado = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -119,6 +121,11 @@ public class Principal extends javax.swing.JFrame {
         btnActualiEx = new javax.swing.JButton();
         btnAbrir = new javax.swing.JButton();
         jPanel2 = new FondoPanel3();
+        jLabel10 = new javax.swing.JLabel();
+        txtProyecto = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtMenu = new javax.swing.JTextField();
+        labelEjemploExten = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
 
@@ -142,11 +149,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Nombre Proyecto:");
+        jLabel4.setText("Nombre Archivo:");
 
-        txtProyecto.addActionListener(new java.awt.event.ActionListener() {
+        txtMenuArchivoG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProyectoActionPerformed(evt);
+                txtMenuArchivoGActionPerformed(evt);
             }
         });
 
@@ -227,8 +234,8 @@ public class Principal extends javax.swing.JFrame {
         chbxMd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         chbxMd.setText(".md");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel5.setText("Extensiónes Aceptadas");
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Extensiónes a Incluir");
 
         javax.swing.GroupLayout panelExtensionesLayout = new javax.swing.GroupLayout(panelExtensiones);
         panelExtensiones.setLayout(panelExtensionesLayout);
@@ -300,7 +307,7 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtResultadoExtensionA);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("Extenciónes Agregadas");
+        jLabel6.setText("Extenciónes Agregadas Extra");
 
         javax.swing.GroupLayout panelSecundarioExtensLayout = new javax.swing.GroupLayout(panelSecundarioExtens);
         panelSecundarioExtens.setLayout(panelSecundarioExtensLayout);
@@ -311,7 +318,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(panelSecundarioExtensLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addGap(40, 40, 40)
                 .addComponent(jLabel6)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -350,7 +357,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         btnActualiEx.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnActualiEx.setText("Actualizar");
+        btnActualiEx.setText("Actualizar Lista");
         btnActualiEx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualiExActionPerformed(evt);
@@ -369,12 +376,21 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 143, Short.MAX_VALUE)
+            .addGap(0, 188, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 114, Short.MAX_VALUE)
         );
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setText("Nombre Proyecto:");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setText("Nombre Menú:");
+
+        labelEjemploExten.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelEjemploExten.setText("Ejemplo: .html");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -384,103 +400,117 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(cmdGenerar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAbrir)
-                                .addGap(194, 194, 194))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(291, 291, 291)
-                                .addComponent(lblResultado)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(291, 291, 291)
+                        .addComponent(lblResultado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtIniciodestinocopia, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(302, 302, 302))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCarpetaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(164, 164, 164)
-                                .addComponent(txtdestinocopia)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel11))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscarRuta)
-                        .addGap(26, 26, 26)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(199, 199, 199))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(txtProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMenu)
+                            .addComponent(txtMenuArchivoG)
+                            .addComponent(txtCarpetaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtdestinocopia, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnBuscarRuta)
+                                .addGap(336, 336, 336))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(185, 185, 185))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtRutaArchivoResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 755, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtRutaArchivoResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 755, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btndestinoCopia)
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbxTipoSave, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel8)
+                                .addGap(37, 37, 37)
+                                .addComponent(cbxExtension, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(jLabel7))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(panelExtensiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(8, 8, 8)
-                                        .addComponent(jLabel2)
-                                        .addGap(33, 33, 33)
-                                        .addComponent(cbxTipoSave, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(11, 11, 11)
-                                        .addComponent(panelExtensiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGap(41, 41, 41)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                                             .addComponent(label1)
                                             .addComponent(btnExtensionNueva)
                                             .addComponent(txtExtensionN, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btnCrearExt))
-                                        .addGap(119, 119, 119)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(panelSecundarioExtens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(btnEliminarExten)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(btnActualiEx))))
+                                            .addComponent(btnCrearExt)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(34, 34, 34)
-                                        .addComponent(jLabel8)
-                                        .addGap(37, 37, 37)
-                                        .addComponent(cbxExtension, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addGap(81, 81, 81)
+                                        .addComponent(labelEjemploExten)))
+                                .addGap(95, 95, 95)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(panelSecundarioExtens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btnEliminarExten)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnActualiEx))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel7))
+                            .addComponent(btndestinoCopia))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(400, 400, 400)
+                .addComponent(cmdGenerar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAbrir)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cbxTipoSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
                             .addComponent(jLabel8)
                             .addComponent(cbxExtension, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
+                            .addComponent(jLabel10)
                             .addComponent(txtProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(txtMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCarpetaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(btnBuscarRuta)))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(32, 32, 32)
+                            .addComponent(jLabel4)
+                            .addComponent(txtMenuArchivoG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 3, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCarpetaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnBuscarRuta))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -488,27 +518,29 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(txtdestinocopia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(panelExtensiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnExtensionNueva)
-                                .addGap(9, 9, 9)
-                                .addComponent(label1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtExtensionN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnCrearExt))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnEliminarExten)
                             .addComponent(btnActualiEx))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelSecundarioExtens, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(panelSecundarioExtens, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panelExtensiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnExtensionNueva)
+                                .addGap(4, 4, 4)
+                                .addComponent(labelEjemploExten)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(label1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtExtensionN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCrearExt)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtRutaArchivoResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -516,15 +548,14 @@ public class Principal extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmdGenerar)
                             .addComponent(btnAbrir))
-                        .addGap(18, 18, 18)
+                        .addGap(76, 76, 76)
                         .addComponent(lblResultado))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(txtIniciodestinocopia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)))
-                .addContainerGap())
+                        .addGap(21, 21, 21))))
         );
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton2.setText("Regresar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -540,18 +571,18 @@ public class Principal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(txtRutaPlantillaHTML, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 729, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 709, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(336, 336, 336))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(473, 473, 473)
+                .addComponent(jLabel9)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -603,7 +634,7 @@ public class Principal extends javax.swing.JFrame {
 
         extension.clear();
         txtRutaArchivoResultado.setText(""
-                + txtCarpetaInicial.getText() + "/" + txtProyecto.getText() + ".html");
+                + txtCarpetaInicial.getText() + "/" + txtMenuArchivoG.getText() + ".html");
         if (chboxOdt.isSelected()) {
             extension.add(".odt");
         }
@@ -633,12 +664,12 @@ public class Principal extends javax.swing.JFrame {
 
         GenDocUtil gd = new GenDocUtil();
         if (txtCarpetaInicial.getText().equals(System.getProperty("user.dir"))) {
-            txtRutaArchivoResultado.setText(System.getProperty("user.dir") + "/" + txtProyecto.getText() + ".html");
+            txtRutaArchivoResultado.setText(System.getProperty("user.dir") + "/" + txtMenuArchivoG.getText() + ".html");
             if ((cbxTipoSave.getSelectedItem().toString()).equals("Solo Menú")) {
 
                 try {
                     gd.generarArchivoFinalHTML(txtCarpetaInicial.getText(), txtRutaPlantillaHTML.getText(),
-                            txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString(), txtProyecto.getText());
+                            txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString(), txtMenuArchivoG.getText());
                     Date fecha = new Date();
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy hh:mm:ss");
                     lblResultado.setText("Resultado: menu HTML generado. " + sdf.format(fecha));
@@ -653,23 +684,26 @@ public class Principal extends javax.swing.JFrame {
                     if (txtdestinocopia.getText().equals("")) {
                         JOptionPane.showMessageDialog(rootPane, "No selecciono el destino de la copia");
                     } else {
+                        CopiarDirectorio cop = new CopiarDirectorio();
                         txtIniciodestinocopia.setText(System.getProperty("user.dir"));
-                        gd.generarArchivoFinalHTML(txtCarpetaInicial.getText(), txtRutaPlantillaHTML.getText(),
-                                txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString(), txtProyecto.getText());
+                        cop.copiarDirectorio(txtIniciodestinocopia.getText(), txtdestinocopia.getText(), extension, cbxExtension.getSelectedItem().toString(), txtMenuArchivoG.getText());
+
+                        txtRutaArchivoResultado.setText(""
+                                + txtdestinocopia.getText() + "/" + txtMenuArchivoG.getText() + ".html");
+                        gd.generarArchivoFinalHTML(txtdestinocopia.getText(), txtRutaPlantillaHTML.getText(),
+                                txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString(), txtMenuArchivoG.getText());
                         Date fecha = new Date();
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy hh:mm:ss");
                         lblResultado.setText("Resultado: menu HTML generado. " + sdf.format(fecha));
-                        Archivo archivoRaiz = gd.escanearDirectorios(txtCarpetaInicial.getText(), extension, cbxExtension.getSelectedItem().toString());
+                        Archivo archivoRaiz = gd.escanearDirectorios(txtdestinocopia.getText(), extension, cbxExtension.getSelectedItem().toString());
                         gd.imprimirListadoArchivosEnConsola(archivoRaiz);
+
                     }
                 } catch (Exception ex) {
                     Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                System.out.println("ini" + txtIniciodestinocopia.getText());
-                System.out.println("fin" + txtdestinocopia.getText());
-                CopiarDirectorio cop = new CopiarDirectorio();
-
-                cop.copiarDirectorio(txtIniciodestinocopia.getText(), txtdestinocopia.getText(), extension, cbxExtension.getSelectedItem().toString(), txtProyecto.getText());
+//                System.out.println("ini" + txtIniciodestinocopia.getText());
+//                System.out.println("fin" + txtdestinocopia.getText());
 
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Seleccione un item Para guardat");
@@ -679,7 +713,7 @@ public class Principal extends javax.swing.JFrame {
 
                 try {
                     gd.generarArchivoFinalHTML(txtCarpetaInicial.getText(), txtRutaPlantillaHTML.getText(),
-                            txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString(), txtProyecto.getText());
+                            txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString(), txtMenuArchivoG.getText());
                     Date fecha = new Date();
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy hh:mm:ss");
                     lblResultado.setText("Resultado: menu HTML generado. " + sdf.format(fecha));
@@ -693,22 +727,25 @@ public class Principal extends javax.swing.JFrame {
                     if (txtdestinocopia.getText().equals("")) {
                         JOptionPane.showMessageDialog(rootPane, "No selecciono el destino de la copia");
                     } else {
-                        gd.generarArchivoFinalHTML(txtCarpetaInicial.getText(), txtRutaPlantillaHTML.getText(),
-                                txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString(), txtProyecto.getText());
+                        CopiarDirectorio cop = new CopiarDirectorio();
+                        cop.copiarDirectorio(txtIniciodestinocopia.getText(), txtdestinocopia.getText(), extension, cbxExtension.getSelectedItem().toString(), txtMenuArchivoG.getText());
+                        txtRutaArchivoResultado.setText(""
+                                + txtdestinocopia.getText() + "/" + txtMenuArchivoG.getText() + ".html");
+                        gd.generarArchivoFinalHTML(txtdestinocopia.getText(), txtRutaPlantillaHTML.getText(),
+                                txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString(), txtMenuArchivoG.getText());
                         Date fecha = new Date();
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy hh:mm:ss");
                         lblResultado.setText("Resultado: menu HTML generado. " + sdf.format(fecha));
-                        Archivo archivoRaiz = gd.escanearDirectorios(txtCarpetaInicial.getText(), extension, cbxExtension.getSelectedItem().toString());
+                        Archivo archivoRaiz = gd.escanearDirectorios(txtdestinocopia.getText(), extension, cbxExtension.getSelectedItem().toString());
                         gd.imprimirListadoArchivosEnConsola(archivoRaiz);
                     }
                 } catch (Exception ex) {
                     Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                System.out.println("ini" + txtIniciodestinocopia.getText());
-                System.out.println("fin" + txtdestinocopia.getText());
-                CopiarDirectorio cop = new CopiarDirectorio();
-                cop.copiarDirectorio(txtIniciodestinocopia.getText(), txtdestinocopia.getText(), extension, cbxExtension.getSelectedItem().toString(), txtProyecto.getText());
-//                JOptionPane.showMessageDialog(rootPane, "Copiado exitoso");
+//                System.out.println("ini" + txtIniciodestinocopia.getText());
+//                System.out.println("fin" + txtdestinocopia.getText());
+                //                JOptionPane.showMessageDialog(rootPane, "Copiado exitoso");
+                txtRutaArchivoResultado.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Seleccione un item");
             }
@@ -771,7 +808,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void txtRutaArchivoResultadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutaArchivoResultadoKeyReleased
         // TODO add your handling code here:
-        txtRutaArchivoResultado.setText(txtRutaArchivoResultado.getText() + "/" + txtProyecto.getText() + ".html");
+        txtRutaArchivoResultado.setText(txtRutaArchivoResultado.getText() + "/" + txtMenuArchivoG.getText() + ".html");
     }//GEN-LAST:event_txtRutaArchivoResultadoKeyReleased
 
     private void btndestinoCopiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndestinoCopiaActionPerformed
@@ -805,14 +842,14 @@ public class Principal extends javax.swing.JFrame {
             txtdestinocopia.setText(""
                     + chooser.getSelectedFile());
         } else {
-            txtProyecto.setText("No Selection ");
+            txtMenuArchivoG.setText("No Selection ");
         }
 
 //        if(btndestinoCopia.isEnabled()){
 //            txtdestinocopia.setVisible(true);
 //        }
 //            
-        
+
     }//GEN-LAST:event_btndestinoCopiaActionPerformed
 
     private void cbxTipoSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipoSaveActionPerformed
@@ -822,8 +859,8 @@ public class Principal extends javax.swing.JFrame {
             txtdestinocopia.setVisible(true);
         } else {
             btndestinoCopia.setVisible(false);
-            panelExtensiones.setVisible(false);
-            btnExtensionNueva.setVisible(false);
+//            panelExtensiones.setVisible(false);
+//            btnExtensionNueva.setVisible(false);
             txtdestinocopia.setVisible(false);
         }
     }//GEN-LAST:event_cbxTipoSaveActionPerformed
@@ -839,6 +876,7 @@ public class Principal extends javax.swing.JFrame {
             txtExtensionN.setVisible(true);
             btnCrearExt.setVisible(true);
             panelSecundarioExtens.setVisible(true);
+            labelEjemploExten.setVisible(true);
         } else {
             txtExtensionN.setVisible(false);
             btnCrearExt.setVisible(false);
@@ -878,9 +916,9 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCrearExtActionPerformed
 
-    private void txtProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProyectoActionPerformed
+    private void txtMenuArchivoGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMenuArchivoGActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtProyectoActionPerformed
+    }//GEN-LAST:event_txtMenuArchivoGActionPerformed
 
     private void txtExtensionNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExtensionNActionPerformed
         // TODO add your handling code here:
@@ -896,6 +934,7 @@ public class Principal extends javax.swing.JFrame {
             panelSecundarioExtens.setVisible(false);
             label1.setVisible(false);
             txtExtensionN.setVisible(false);
+            labelEjemploExten.setVisible(false);
             btnCrearExt.setVisible(false);
         } else if (cbxExtension.getSelectedItem().toString().equals("Seleccionar extensión")) {
             panelExtensiones.setVisible(true);
@@ -990,6 +1029,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton cmdGenerar;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1002,12 +1043,15 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label1;
+    private javax.swing.JLabel labelEjemploExten;
     private javax.swing.JLabel lblResultado;
     private javax.swing.JPanel panelExtensiones;
     private javax.swing.JPanel panelSecundarioExtens;
     private javax.swing.JTextField txtCarpetaInicial;
     private javax.swing.JTextField txtExtensionN;
     private javax.swing.JTextField txtIniciodestinocopia;
+    private javax.swing.JTextField txtMenu;
+    private javax.swing.JTextField txtMenuArchivoG;
     private javax.swing.JTextField txtProyecto;
     private javax.swing.JTextArea txtResultadoExtensionA;
     private javax.swing.JTextField txtRutaArchivoResultado;
@@ -1022,7 +1066,7 @@ class FondoPanel3 extends JPanel {
 //            imagen = new ImageIcon(System.getProperty("user.dir") + "/src/main/java/imagenes/logo-utn.png").getImage();
             imagen = new ImageIcon(getClass().getResource("/ec/edu/utn/gendoc/imagenes/logo_csoft.png")).getImage();
 //        g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
-            g.drawImage(imagen, 0, 0, 100, 105, this);
+            g.drawImage(imagen, 10, 10, 115, 105, this);
             setOpaque(false);
             super.paint(g);
         }
