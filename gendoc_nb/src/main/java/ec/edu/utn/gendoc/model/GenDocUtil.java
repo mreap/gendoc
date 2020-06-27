@@ -2,9 +2,11 @@ package ec.edu.utn.gendoc.model;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -149,7 +151,7 @@ public class GenDocUtil {
      */
     public List<String> generarMenuHTML(Archivo archivoRaiz) {
         List<String> lineasHTML = new ArrayList<>();
-        
+
         Collections.sort(archivoRaiz.getArchivosHijos(), new Comparator<Archivo>() {
             @Override
             public int compare(Archivo p1, Archivo p2) {
@@ -167,7 +169,7 @@ public class GenDocUtil {
             @Override
             public int compare(Archivo p1, Archivo p2) {
                 if (p1.isDirectorio() && p2.isDirectorio()) {
-                    
+
                     if (!p1.equals(p2) && p1.equals(p1.getNombre())) {
                         return -1;
                     } else if (!p1.equals(p2) && p2.equals(p2.getNombre())) {
@@ -180,7 +182,7 @@ public class GenDocUtil {
                 return 0;
             }
         });
-        
+
         if (archivoRaiz.isDirectorio()) {
             lineasHTML.add("<button class='dropdown-btn'>");
             lineasHTML.add(archivoRaiz.getNombre() + "<i class='fa fa-caret-down'></i>");
@@ -198,22 +200,34 @@ public class GenDocUtil {
         }
         return lineasHTML;
     }
-    
-    public List<String> generarTitulo(Archivo archivoRaiz, String TituloMenu){
-        List<String> lineasHTML=new ArrayList<>();       
-            lineasHTML.add("<div class=\"sidebar-header\">");
-            lineasHTML.add("<h3>"+TituloMenu+"</h3>");
-            lineasHTML.add("</div>");                                    
+
+    public List<String> generarTitulo(Archivo archivoRaiz, String TituloMenu) {
+        List<String> lineasHTML = new ArrayList<>();
+        lineasHTML.add("<div class=\"sidebar-header\">");
+        lineasHTML.add("<h3>" + TituloMenu + "</h3>");
+        lineasHTML.add("</div>");
         return lineasHTML;
-    }    
-    
-    public List<String> generarLogo(Archivo archivoRaiz){
-             List<String> lineasHTML=new ArrayList<>();       
-            lineasHTML.add("<div align=\"right\">");
-            lineasHTML.add(" <img src=\"https://i.ibb.co/BGtGykQ/logo-csoft.png\" width=\"100\" height=\"100\">");
-            lineasHTML.add("</div>");                                    
+    }
+
+    public List<String> generarLogo(Archivo archivoRaiz, String imagen) {        
+        List<String> lineasHTML = new ArrayList<>();
+        lineasHTML.add("<div align=\"right\">");
+        lineasHTML.add(" <img  src=\""+imagen+"\" class=\"logo\" style=\"width:100px;height:100px;\">");
+        lineasHTML.add("</div>");
         return lineasHTML;
-    } 
+    }
+
+    public List<String> tituloIndex(Archivo archivoRaiz, String TituloIndex) {
+        List<String> lineasHTML = new ArrayList<>();
+        lineasHTML.add("<span >" + TituloIndex + "</span>");
+        return lineasHTML;
+    }
+
+    public List<String> nombreBoton(Archivo archivoRaiz, String nombreBoton) {
+        List<String> lineasHTML = new ArrayList<>();
+        lineasHTML.add("<span >" + nombreBoton + "</span>");
+        return lineasHTML;
+    }
 
     /**
      * Lee todo el texto HTML desde un archivo.
@@ -258,7 +272,7 @@ public class GenDocUtil {
      * @param lineasHTML Informacion de la plantilla HTML inicial.
      * @return Totalidad del codigo HTML.
      */
-    public List<String> procesarInformacion(Archivo archivoRaiz, List<String> lineasHTML, String TituloMenu) {
+    public List<String> procesarInformacion(Archivo archivoRaiz, List<String> lineasHTML, String TituloMenu, String nombreMenu, String TituloIndex, String imagen) {
         List<String> lineasProcesadas = new ArrayList<String>();
         for (String linea : lineasHTML) {
             lineasProcesadas.add(linea);
@@ -266,14 +280,22 @@ public class GenDocUtil {
                 List<String> lineasMenu = new ArrayList<>();
                 lineasMenu = generarMenuHTML(archivoRaiz);
                 lineasProcesadas.addAll(lineasMenu);
-            }else if(linea.contains("<!-- inicio Titulo -->")){
-                List<String> lineasTitulo=new ArrayList<>();
-                lineasTitulo=generarTitulo(archivoRaiz, TituloMenu);
+            } else if (linea.contains("<!-- inicio Titulo -->")) {
+                List<String> lineasTitulo = new ArrayList<>();
+                lineasTitulo = generarTitulo(archivoRaiz, TituloMenu);
                 lineasProcesadas.addAll(lineasTitulo);
-            }else if(linea.contains("<!-- inicio logo -->")){
-                List<String> lineasLogo=new ArrayList<>();
-                lineasLogo=generarLogo(archivoRaiz);
+            } else if (linea.contains("<!-- inicio logo -->")) {
+                List<String> lineasLogo = new ArrayList<>();
+                lineasLogo = generarLogo(archivoRaiz, imagen);
                 lineasProcesadas.addAll(lineasLogo);
+            } else if (linea.contains("<!-- inicio nombreMenu -->")) {
+                List<String> lineasnombreMenu = new ArrayList<>();
+                lineasnombreMenu = nombreBoton(archivoRaiz,nombreMenu);
+                lineasProcesadas.addAll(lineasnombreMenu);
+            }else if(linea.contains("<!-- inicio tituloIndex -->")){
+                List<String> lineastituloIndex = new ArrayList<>();
+                lineastituloIndex = tituloIndex(archivoRaiz,TituloIndex);
+                lineasProcesadas.addAll(lineastituloIndex);
             }
         }
         return lineasProcesadas;
@@ -286,7 +308,7 @@ public class GenDocUtil {
      * @param rutaPlantillaHTML
      * @param rutaArchivoResultado
      */
-    public void generarArchivoFinalHTML(String directorioInicial, String rutaPlantillaHTML, String rutaArchivoResultado, List<String> extension, String TipoG,String TituloMenu) {
+    public void generarArchivoFinalHTML(String directorioInicial, String rutaPlantillaHTML, String rutaArchivoResultado, List<String> extension, String TipoG, String TituloMenu, String nombreMenu, String TituloIndex,String imagen) {
         List<String> lineasHTML = null;
         List<String> lineasProcesadas = null;
         try {
@@ -294,7 +316,7 @@ public class GenDocUtil {
             Archivo myFile = escanearDirectorios(directorioInicial, extension, TipoG);
             lineasHTML = leerHTMLDesdePlantilla(rutaPlantillaHTML);
             //lineasProcesadas = procesarInformacion(listaNombres, lineasHTML);
-            lineasProcesadas = procesarInformacion(myFile, lineasHTML, TituloMenu);
+            lineasProcesadas = procesarInformacion(myFile, lineasHTML, TituloMenu, nombreMenu, TituloIndex, imagen);
             //creacion del archivo:
             FileWriter archivo = null;
             PrintWriter pw = null;

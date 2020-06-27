@@ -14,10 +14,12 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ComponentListener;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -44,6 +46,7 @@ public class Principal extends javax.swing.JFrame {
     List<String> extension = new ArrayList<String>();
     List<String> extenAgregada = new ArrayList<>();
     static String extencionHtml = ".html";
+    public String imagen, imagens;
 
     public Principal() {
 
@@ -71,6 +74,44 @@ public class Principal extends javax.swing.JFrame {
         //txtRutaPlantillaHTML.setText(System.getProperty("user.dir") + "/plantillas/index3.html");
         txtRutaArchivoResultado.setText(System.getProperty("user.dir") + "/" + txtMenuArchivoG.getText() + ".html");
         btnAbrir.setVisible(false);
+        encontrarImagen();
+
+    }
+
+    public void encontrarImagen() {
+
+        try {
+            //------------
+            File directorio = new File(""); //Creas un nuevo directorio a nivel de tu jar.
+            directorio.mkdirs();
+            directorio.setWritable(true);
+            //copias la direccion
+            String archivo = directorio.getCanonicalPath() + File.pathSeparator + "logo_csoft.png";
+            //nuevo archivo en esa direccion
+            File temp = new File(archivo);
+            InputStream is = this.getClass().getResourceAsStream("/ec/edu/utn/gendoc/imagenes/logo_csoft.png");
+
+            FileOutputStream archivoDestino = new FileOutputStream(temp);
+            OutputStream out = new FileOutputStream(temp);
+            FileWriter fw = new FileWriter(temp);
+            byte[] buffer = new byte[512 * 1024];
+            //lees el archivo hasta que se acabe...
+            int nbLectura;
+            while ((nbLectura = is.read(buffer)) != -1) {
+                out.write(buffer, 0, nbLectura);
+            }
+            //cierras el archivo,el inputS y el FileW
+            fw.close();
+            archivoDestino.close();
+            out.close();
+            is.close();
+            //abres el archivo temporal 
+            imagens = temp.getAbsolutePath();
+            temp.deleteOnExit();
+ 
+        } catch (Exception e) {
+        }
+        
     }
 
     /**
@@ -603,7 +644,8 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdGenerarActionPerformed
-
+        
+        
         try {
             //------------
             File directorio = new File(""); //Creas un nuevo directorio a nivel de tu jar.
@@ -661,6 +703,25 @@ public class Principal extends javax.swing.JFrame {
                 extension.add(extenAgregada.get(i));
             }
         }
+        InputStream inputStream = null;
+        OutputStream outputStream = null;
+        try {
+            File archivoOriginal = new File(imagens);
+            File archivoCopia = new File(txtCarpetaInicial.getText()+"/gendoc_nb;logo_csoft.png");
+            inputStream = new FileInputStream(archivoOriginal);
+            outputStream = new FileOutputStream(archivoCopia);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+            }
+            inputStream.close();
+            outputStream.close();
+            System.out.println("Archivo copiado.");
+            imagen = txtCarpetaInicial.getText()+"/gendoc_nb;logo_csoft.png";
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         GenDocUtil gd = new GenDocUtil();
         if (txtCarpetaInicial.getText().equals(System.getProperty("user.dir"))) {
@@ -669,7 +730,8 @@ public class Principal extends javax.swing.JFrame {
 
                 try {
                     gd.generarArchivoFinalHTML(txtCarpetaInicial.getText(), txtRutaPlantillaHTML.getText(),
-                            txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString(), txtMenuArchivoG.getText());
+                            txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString(), txtMenuArchivoG.getText(), txtMenu.getText(),
+                            txtProyecto.getText(), imagen);
                     Date fecha = new Date();
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy hh:mm:ss");
                     lblResultado.setText("Resultado: menu HTML generado. " + sdf.format(fecha));
@@ -691,7 +753,8 @@ public class Principal extends javax.swing.JFrame {
                         txtRutaArchivoResultado.setText(""
                                 + txtdestinocopia.getText() + "/" + txtMenuArchivoG.getText() + ".html");
                         gd.generarArchivoFinalHTML(txtdestinocopia.getText(), txtRutaPlantillaHTML.getText(),
-                                txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString(), txtMenuArchivoG.getText());
+                                txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString(), txtMenuArchivoG.getText(), txtMenu.getText(),
+                                txtProyecto.getText(), imagen);
                         Date fecha = new Date();
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy hh:mm:ss");
                         lblResultado.setText("Resultado: menu HTML generado. " + sdf.format(fecha));
@@ -713,7 +776,7 @@ public class Principal extends javax.swing.JFrame {
 
                 try {
                     gd.generarArchivoFinalHTML(txtCarpetaInicial.getText(), txtRutaPlantillaHTML.getText(),
-                            txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString(), txtMenuArchivoG.getText());
+                            txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString(), txtMenuArchivoG.getText(), txtMenu.getText(), txtProyecto.getText(), imagen);
                     Date fecha = new Date();
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy hh:mm:ss");
                     lblResultado.setText("Resultado: menu HTML generado. " + sdf.format(fecha));
@@ -732,7 +795,8 @@ public class Principal extends javax.swing.JFrame {
                         txtRutaArchivoResultado.setText(""
                                 + txtdestinocopia.getText() + "/" + txtMenuArchivoG.getText() + ".html");
                         gd.generarArchivoFinalHTML(txtdestinocopia.getText(), txtRutaPlantillaHTML.getText(),
-                                txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString(), txtMenuArchivoG.getText());
+                                txtRutaArchivoResultado.getText(), extension, cbxExtension.getSelectedItem().toString(), txtMenuArchivoG.getText(), txtMenu.getText(),
+                                txtProyecto.getText(), imagen);
                         Date fecha = new Date();
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy hh:mm:ss");
                         lblResultado.setText("Resultado: menu HTML generado. " + sdf.format(fecha));

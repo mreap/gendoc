@@ -72,18 +72,20 @@
                 SIDEBAR STYLE
             ----------------------------------------------------- */
             #sidebar {
-                width: 250px;
-                position: fixed;
+                width: auto;
+                position: absolute;
                 top: 0;
                 left: 0;
                 height: 100vh;
-                z-index: 999;
+                z-index: 200;
                 background: #7386D5;
                 background-color: #111;
                 color: #fff;
                 transition: all 0.3s;
                 overflow-x: hidden;
-                padding-top: 20px;                
+                padding-top: 10px;  
+
+
             }
 
 
@@ -98,7 +100,7 @@
                 display: block;
                 border: none;
                 background: none;
-                width: 100%;
+                width: 85%;
                 text-align: left;
                 cursor: pointer;
                 outline: none;
@@ -129,8 +131,7 @@
 
             /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
             .dropdown-container {
-                display: none;
-                background-color: #262626;
+                display: none;                
                 padding-left: 8px;
             }
 
@@ -291,47 +292,116 @@
             }
 
 
+            aside.sidebar-left#resizable {
+                height: 100vh;
+                width: 30vh;
+            }
+
+            @media (min-width: 768px) {
+                .wrapper .sidebar-left {
+                    top: 0;
+                }
+            }
+
+            @media (min-width: 1200px) {
+                aside.sidebar-left {
+                    width: 200px;
+                }
+            }
+
+            aside.sidebar-left {
+                width: 175px;
+                top: 0;
+                float: left;
+                box-shadow: -5px 0 0 #f7f7f7 inset;
+                z-index: 1000;
+            }
+
+            aside.sidebar-left .draghandle {
+                position: absolute;
+                z-index: 100;
+                width: 8px;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                cursor: col-resize;
+                float: right;
+            }
+
+            .wrapper {
+                min-height: 100vh;
+                width: 100%;
+                height: 100%;
+                table-layout: fixed;
+                overflow: hidden;
+                padding-top: 0;
+            }
+
+
+
+            .mt-wrapper {
+                position: relative;
+                z-index: 1;
+            }
+
+
+
+            @media (max-width: 768px) {
+                aside.sidebar-left {
+                    display: none;
+                }
+            }
+
+            .wrapper #mainArea.content {               
+                margin-left: 25vh;  
+                margin-right:  10vh; 
+
+            } 
+
+
+
         </style>
     </head>
     <body>
 
-<!--   https://community.esri.com/blogs/sergent/2015/01/27/create-a-draggable-floating-sidebar-with-social-networking-widgets  -->
-
         <div class="wrapper">
             <!-- Sidebar Holder sidebar -->                        
-            <div class="sidebar" id="sidebar">  
-                <!-- inicio Titulo -->
-                <!--  <div class="sidebar-header">
-                      <h3>Menú</h3>
-                  </div> -->
-                <!-- aqui va el menu generado: -->
-                <!-- inicio gendoc -->                                
-                <a href="#about">Acerca de</a>
+            <div class="sidebar" id="sidebar">
+                <aside id="resizable" class="sidebar-left movable-div position-fixed bottom-0 left-0 animated">
 
+                    <!-- inicio Titulo -->
+                    <!--  <div class="sidebar-header">
+                          <h3>Menú</h3>
+                      </div> -->
+                    <!-- aqui va el menu generado: -->
+                    <!-- inicio gendoc -->                   
+                    <a href="#about">Acerca de</a>
+
+                    <div class="draghandle" style="width: 6px; height: auto;"></div>
+
+                </aside>
             </div>
+
+
+
 
             <!-- Page Content Holder -->
 
-
-            <div id="content">
-
+            <div id="mainArea" class="content marginLeft d-flex h-100 flex-column">
                 <nav class="navbar navbar-default">
                     <div class="container-fluid">   
+
                         <header>
                             <div class="navbar-header">
                                 <button  type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
                                     <i class="glyphicon glyphicon-align-left"></i>
-                                    <span >Men&uacute;</span>                                
+                                    <!-- inicio nombreMenu -->
                                 </button>                             
                             </div>
                             <div align="center">
-                                <span >Aqui va el titulo</span>                                                    
-                            </div>  
-                            <!-- <a href="#" class="navbar-right">-->
-                            <!--<div align="right"> -->
-                            <!-- inicio logo -->                        
-                            <!--  </div> -->
-                            <!--   </a>      -->                  
+                                <!-- inicio tituloIndex -->                                                                                     
+                            </div>                                          
+                            <!-- inicio logo -->                                                                                
                         </header>
 
 
@@ -340,18 +410,13 @@
 
                     </div>
                 </nav>
-
-                <!--  <h2>Sidebar Dropdown</h2>
-                  <p>Click on the dropdown button to open the dropdown menu inside the side navigation.</p>
-                  <p>This sidebar is of full height (100%) and always shown.</p>
-                  <p>Some random text....</p> -->
-
-                <embed src="" name="embed" type="application/pdf" width="1200" height="1000" quality="high" wmode="transparent">
+               
+                <embed src="" name="embed" type="application/pdf" width="1100" height="1000" quality="high" wmode="transparent">
                 <!-- <iframe height="800px" width="100%" src="demo_iframe.htm" name="iframe_a"></iframe> -->
 
             </div>
-
         </div>
+
 
         <script>
             /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
@@ -370,6 +435,7 @@
                 });
             }
         </script>
+        <!-- width: 30vh; -->
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#sidebarCollapse').on('click', function () {
@@ -410,14 +476,56 @@
                     $('#sidebar, #content').toggleClass('active');
                     $('.collapse.in').toggleClass('in');
                     $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+                    var area = document.getElementById("mainArea");
+                    
+                     $(area).css('margin-left', (25) + 'vh');
+                    var resizable1 = document.getElementById("resizable");
+                    resizable1.style.width = "30vh"
                 });
             });
         </script>
 
 
 
-        <!-- ------------>
+        <!-- -------margin-left: 10px;----->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var element = document.getElementById('resizable');
+                if (element) {
+                    var resizer = document.createElement('div');
+                    resizer.className = 'draghandle';
+                    resizer.style.width = '6px';
+                    resizer.style.height = '100vh';
+                    element.appendChild(resizer);
+                    resizer.addEventListener('mousedown', initResize, false);
+                }
 
+                function initResize(e) {
+                    window.addEventListener('mousemove', Resize, false);
+                    window.addEventListener('mouseup', stopResize, false);
+                    $('#mainArea.content, #tabs iframe').addClass('marginLeft');
+                }
+
+                function Resize(e) {
+                    element.style.width = (e.clientX - element.offsetLeft) + 'px';
+                    $('#mainArea.content').css('margin-left', (e.clientX - element.offsetLeft) + 'px');
+                    $('#tabs iframe').css('margin-left', (element.offsetLeft + 40) + 'px');
+                }
+
+                function stopResize(e) {
+                    window.removeEventListener('mousemove', Resize, false);
+                    window.removeEventListener('mouseup', stopResize, false);
+                    $('#tabs iframe').css('margin-left', element.offsetLeft + 'px');
+                }
+
+            });
+
+            //mobile toggle
+            $('.toggle-mobile').click(function () {
+                $('.overlay').toggleClass('hidden');
+            });
+
+        </script>
 
     </body>
 </html>
