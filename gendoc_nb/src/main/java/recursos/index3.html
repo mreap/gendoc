@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script type="text/javascript">
+            var navInfo = window.navigator.appVersion.toLowerCase();
+            if (navInfo.indexOf('win') != -1)
+            {
+                <meta http-equiv="Content-Type" content="text/html;charset=Windows-1252">
+            } else 
+            {
+                <meta http-equiv='Content-Type' content='text/html; charset=ISO-8859-1' />
+            } 
 
-        <meta http-equiv="Content-Type" content="text/html;charset=Windows-1252">
+        </script>
+
+
+        <!--<meta http-equiv="Content-Type" content="text/html;charset=Windows-1252">-->
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        
 
 
 
@@ -371,7 +385,7 @@
 
                     <!-- inicio Titulo -->
                     <!--  <div class="sidebar-header">
-                          <h3>Menú</h3>
+                          <h3>Menï¿½</h3>
                       </div> -->
                     <!-- aqui va el menu generado: -->
                     <!-- inicio gendoc -->                   
@@ -410,9 +424,9 @@
 
                     </div>
                 </nav>
-               
-                <embed src="" name="embed" type="application/pdf" width="1100" height="1000" quality="high" wmode="transparent">
-                <!-- <iframe height="800px" width="100%" src="demo_iframe.htm" name="iframe_a"></iframe> -->
+
+                <!--<embed src="" name="embed" type="application/pdf" width="1100" height="1000" quality="high" wmode="transparent">-->
+                <iframe name="embed" height="1000" width="1100" src=""></iframe> 
 
             </div>
         </div>
@@ -477,8 +491,8 @@
                     $('.collapse.in').toggleClass('in');
                     $('a[aria-expanded=true]').attr('aria-expanded', 'false');
                     var area = document.getElementById("mainArea");
-                    
-                     $(area).css('margin-left', (25) + 'vh');
+
+                    $(area).css('margin-left', (25) + 'vh');
                     var resizable1 = document.getElementById("resizable");
                     resizable1.style.width = "30vh"
                 });
