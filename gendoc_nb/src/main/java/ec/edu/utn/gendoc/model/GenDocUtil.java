@@ -150,6 +150,8 @@ public class GenDocUtil {
      * @return menu en formato HTML.
      */
     public List<String> generarMenuHTML(Archivo archivoRaiz) {
+        String nombre = "";
+        String ruta = "";
         List<String> lineasHTML = new ArrayList<>();
 
         Collections.sort(archivoRaiz.getArchivosHijos(), new Comparator<Archivo>() {
@@ -182,10 +184,103 @@ public class GenDocUtil {
                 return 0;
             }
         });
+        for (int i = 0; i < archivoRaiz.getNombre().length(); i++) {
+
+            if (archivoRaiz.getNombre().charAt(i) == 'á') {
+                if (nombre.equals("")) {
+                    nombre = reemplazar(archivoRaiz.getNombre(), "á", "&aacute;");
+                } else {
+                    nombre = reemplazar(nombre, "á", "&aacute;");
+                }
+
+            } else if (archivoRaiz.getNombre().charAt(i) == 'é') {
+                if (nombre.equals("")) {
+                    nombre = reemplazar(archivoRaiz.getNombre(), "é", "&eacute;");
+                } else {
+                    nombre = reemplazar(nombre, "é", "&eacute;");
+                }
+
+            } else if (archivoRaiz.getNombre().charAt(i) == 'í') {
+                if (nombre.equals("")) {
+                    nombre = reemplazar(archivoRaiz.getNombre(), "í", "&iacute;");
+                } else {
+                    nombre = reemplazar(nombre, "í", "&iacute;");
+                }
+
+            } else if (archivoRaiz.getNombre().charAt(i) == 'ó') {
+                if (nombre.equals("")) {
+                    nombre = reemplazar(archivoRaiz.getNombre(), "ó", "&oacute;");
+                } else {
+                    nombre = reemplazar(nombre, "ó", "&oacute;");
+                }
+
+            } else if (archivoRaiz.getNombre().charAt(i) == 'ú') {
+                if (nombre.equals("")) {
+                    nombre = reemplazar(archivoRaiz.getNombre(), "ú", "&uacute;");
+                } else {
+                    nombre = reemplazar(nombre, "ú", "&uacute;");
+                }
+
+            } else if (archivoRaiz.getNombre().charAt(i) == 'Á') {
+                if (nombre.equals("")) {
+                    nombre = reemplazar(archivoRaiz.getNombre(), "Á", "&Aacute;");
+                } else {
+                    nombre = reemplazar(nombre, "Á", "&Aacute;");
+                }
+
+            } else if (archivoRaiz.getNombre().charAt(i) == 'É') {
+                if (nombre.equals("")) {
+                    nombre = reemplazar(archivoRaiz.getNombre(), "É", "&Eacute;");
+                } else {
+                    nombre = reemplazar(nombre, "É", "&Eacute;");
+                }
+
+            } else if (archivoRaiz.getNombre().charAt(i) == 'Í') {
+                if (nombre.equals("")) {
+                    nombre = reemplazar(archivoRaiz.getNombre(), "Í", "&Iacute;");
+                } else {
+                    nombre = reemplazar(nombre, "Í", "&Iacute;");
+                }
+
+            } else if (archivoRaiz.getNombre().charAt(i) == 'Ó') {
+                if (nombre.equals("")) {
+                    nombre = reemplazar(archivoRaiz.getNombre(), "Ó", "&Oacute;");
+                } else {
+                    nombre = reemplazar(nombre, "Ó", "&Oacute;");
+                }
+
+            } else if (archivoRaiz.getNombre().charAt(i) == 'Ú') {
+                if (nombre.equals("")) {
+                    nombre = reemplazar(archivoRaiz.getNombre(), "Ú", "&Uacute;");
+                } else {
+                    nombre = reemplazar(nombre, "Ú", "&Uacute;");
+                }
+
+            } else if (archivoRaiz.getNombre().charAt(i) == 'ñ') {
+                if (nombre.equals("")) {
+                    nombre = reemplazar(archivoRaiz.getNombre(), "ñ", "&ntilde;");
+                } else {
+                    nombre = reemplazar(nombre, "ñ", "&ntilde;");
+                }
+
+            } else if (archivoRaiz.getNombre().charAt(i) == 'Ñ') {
+                if (nombre.equals("")) {
+                    nombre = reemplazar(archivoRaiz.getNombre(), "Ñ", "&Ntilde;");
+                } else {
+                    nombre = reemplazar(nombre, "Ñ", "&Ntilde;");
+                }
+
+            }
+
+        }
 
         if (archivoRaiz.isDirectorio()) {
             lineasHTML.add("<button class='dropdown-btn'>");
-            lineasHTML.add(archivoRaiz.getNombre() + "<i class='fa fa-caret-down'></i>");
+            if (nombre.equals("")) {
+                lineasHTML.add(archivoRaiz.getNombre() + "<i class='fa fa-caret-down'></i>");
+            } else {
+                lineasHTML.add(nombre + "<i class='fa fa-caret-down'></i>");
+            }
             lineasHTML.add("</button>");
             lineasHTML.add("<div class=\"dropdown-container\">");
             for (Archivo mf : archivoRaiz.getArchivosHijos()) {
@@ -194,38 +289,243 @@ public class GenDocUtil {
             }
             lineasHTML.add("</div>");
         } else {
+            for (int i = 0; i < archivoRaiz.getRutaCompleta().length(); i++) {
+
+                if (archivoRaiz.getRutaCompleta().charAt(i) == 'á') {
+                    if (ruta.equals("")) {
+                        ruta = reemplazar(archivoRaiz.getRutaCompleta(), "á", "&aacute;");
+                    } else {
+                        ruta = reemplazar(ruta, "á", "&aacute;");
+                    }
+
+                } else if (archivoRaiz.getRutaCompleta().charAt(i) == 'é') {
+                    if (ruta.equals("")) {
+                        ruta = reemplazar(archivoRaiz.getRutaCompleta(), "é", "&eacute;");
+                    } else {
+                        ruta = reemplazar(ruta, "é", "&eacute;");
+                    }
+
+                } else if (archivoRaiz.getRutaCompleta().charAt(i) == 'í') {
+                    if (ruta.equals("")) {
+                        ruta = reemplazar(archivoRaiz.getRutaCompleta(), "í", "&iacute;");
+                    } else {
+                        ruta = reemplazar(ruta, "í", "&iacute;");
+                    }
+
+                } else if (archivoRaiz.getRutaCompleta().charAt(i) == 'ó') {
+                    if (ruta.equals("")) {
+                        ruta = reemplazar(archivoRaiz.getRutaCompleta(), "ó", "&oacute;");
+                    } else {
+                        ruta = reemplazar(ruta, "ó", "&oacute;");
+                    }
+
+                } else if (archivoRaiz.getRutaCompleta().charAt(i) == 'ú') {
+                    if (ruta.equals("")) {
+                        ruta = reemplazar(archivoRaiz.getRutaCompleta(), "ú", "&uacute;");
+                    } else {
+                        ruta = reemplazar(ruta, "ú", "&uacute;");
+                    }
+
+                } else if (archivoRaiz.getRutaCompleta().charAt(i) == 'Á') {
+                    if (ruta.equals("")) {
+                        ruta = reemplazar(archivoRaiz.getRutaCompleta(), "Á", "&Aacute;");
+                    } else {
+                        ruta = reemplazar(ruta, "Á", "&Aacute;");
+                    }
+
+                } else if (archivoRaiz.getRutaCompleta().charAt(i) == 'É') {
+                    if (ruta.equals("")) {
+                        ruta = reemplazar(archivoRaiz.getRutaCompleta(), "É", "&Eacute;");
+                    } else {
+                        ruta = reemplazar(ruta, "É", "&Eacute;");
+                    }
+
+                } else if (archivoRaiz.getRutaCompleta().charAt(i) == 'Í') {
+                    if (ruta.equals("")) {
+                        ruta = reemplazar(archivoRaiz.getRutaCompleta(), "Í", "&Iacute;");
+                    } else {
+                        ruta = reemplazar(ruta, "Í", "&Iacute;");
+                    }
+
+                } else if (archivoRaiz.getRutaCompleta().charAt(i) == 'Ó') {
+                    if (ruta.equals("")) {
+                        ruta = reemplazar(archivoRaiz.getRutaCompleta(), "Ó", "&Oacute;");
+                    } else {
+                        ruta = reemplazar(ruta, "Ó", "&Oacute;");
+                    }
+
+                } else if (archivoRaiz.getRutaCompleta().charAt(i) == 'Ú') {
+                    if (ruta.equals("")) {
+                        ruta = reemplazar(archivoRaiz.getRutaCompleta(), "Ú", "&Uacute;");
+                    } else {
+                        ruta = reemplazar(ruta, "Ú", "&Uacute;");
+                    }
+
+                } else if (archivoRaiz.getRutaCompleta().charAt(i) == 'ñ') {
+                    if (ruta.equals("")) {
+                        ruta = reemplazar(archivoRaiz.getRutaCompleta(), "ñ", "&ntilde;");
+                    } else {
+                        ruta = reemplazar(ruta, "ñ", "&ntilde;");
+                    }
+
+                } else if (archivoRaiz.getRutaCompleta().charAt(i) == 'Ñ') {
+                    if (ruta.equals("")) {
+                        ruta = reemplazar(archivoRaiz.getRutaCompleta(), "Ñ", "&Ntilde;");
+                    } else {
+                        ruta = reemplazar(ruta, "Ñ", "&Ntilde;");
+                    }
+
+                }
+
+            }
             List<String> lineas = new ArrayList<>();
-            lineas.add("<a target=\"embed\" href='" + archivoRaiz.getRutaCompleta() + "'>" + archivoRaiz.getNombre() + "</a>");
+            if (nombre.equals("")) {
+                if (ruta.equals("")) {
+                    lineas.add("<a target=\"embed\" href='" + archivoRaiz.getRutaCompleta() + "'>" + archivoRaiz.getNombre() + "</a>");
+                } else {
+                    lineas.add("<a target=\"embed\" href='" + ruta + "'>" + archivoRaiz.getNombre() + "</a>");
+                }
+
+            } else {
+                if (ruta.equals("")) {
+                    lineas.add("<a target=\"embed\" href='" + archivoRaiz.getRutaCompleta() + "'>" + nombre + "</a>");
+                } else {
+                    lineas.add("<a target=\"embed\" href='" + ruta + "'>" + nombre + "</a>");
+                }
+
+            }
+            //lineas.add("<a target=\"embed\" href='" + archivoRaiz.getRutaCompleta() + "'>" + archivoRaiz.getNombre() + "</a>");
             return lineas;
         }
         return lineasHTML;
     }
 
+    public String generarnombres(String nombre) {
+        String titulonuevo = "";
+        for (int i = 0; i < nombre.length(); i++) {
+
+            if (nombre.charAt(i) == 'á') {
+                if (titulonuevo.equals("")) {
+                    titulonuevo = reemplazar(nombre, "á", "&aacute;");
+                } else {
+                    titulonuevo = reemplazar(titulonuevo, "á", "&aacute;");
+                }
+
+            } else if (nombre.charAt(i) == 'é') {
+                if (titulonuevo.equals("")) {
+                    titulonuevo = reemplazar(nombre, "é", "&eacute;");
+                } else {
+                    titulonuevo = reemplazar(titulonuevo, "é", "&eacute;");
+                }
+
+            } else if (nombre.charAt(i) == 'í') {
+                if (titulonuevo.equals("")) {
+                    titulonuevo = reemplazar(nombre, "í", "&iacute;");
+                } else {
+                    titulonuevo = reemplazar(titulonuevo, "í", "&iacute;");
+                }
+
+            } else if (nombre.charAt(i) == 'ó') {
+                if (titulonuevo.equals("")) {
+                    titulonuevo = reemplazar(nombre, "ó", "&oacute;");
+                } else {
+                    titulonuevo = reemplazar(titulonuevo, "ó", "&oacute;");
+                }
+
+            } else if (nombre.charAt(i) == 'ú') {
+                if (titulonuevo.equals("")) {
+                    titulonuevo = reemplazar(nombre, "ú", "&uacute;");
+                } else {
+                    titulonuevo = reemplazar(titulonuevo, "ú", "&uacute;");
+                }
+
+            } else if (nombre.charAt(i) == 'Á') {
+                if (titulonuevo.equals("")) {
+                    titulonuevo = reemplazar(nombre, "Á", "&Aacute;");
+                } else {
+                    titulonuevo = reemplazar(titulonuevo, "Á", "&Aacute;");
+                }
+            } else if (nombre.charAt(i) == 'É') {
+                if (titulonuevo.equals("")) {
+                    titulonuevo = reemplazar(nombre, "É", "&Eacute;");
+                } else {
+                    titulonuevo = reemplazar(titulonuevo, "É", "&Eacute;");
+                }
+
+            } else if (nombre.charAt(i) == 'Í') {
+                if (titulonuevo.equals("")) {
+                    titulonuevo = reemplazar(nombre, "Í", "&Iacute;");
+                } else {
+                    titulonuevo = reemplazar(titulonuevo, "Í", "&Iacute;");
+                }
+
+            } else if (nombre.charAt(i) == 'Ó') {
+                if (titulonuevo.equals("")) {
+                    titulonuevo = reemplazar(nombre, "Ó", "&Oacute;");
+                } else {
+                    titulonuevo = reemplazar(titulonuevo, "Ó", "&Oacute;");
+                }
+
+            } else if (nombre.charAt(i) == 'Ú') {
+                if (titulonuevo.equals("")) {
+                    titulonuevo = reemplazar(nombre, "Ú", "&Uacute;");
+                } else {
+                    titulonuevo = reemplazar(titulonuevo, "Ú", "&Uacute;");
+                }
+
+            } else if (nombre.charAt(i) == 'ñ') {
+                if (titulonuevo.equals("")) {
+                    titulonuevo = reemplazar(nombre, "ñ", "&ntilde;");
+                } else {
+                    titulonuevo = reemplazar(titulonuevo, "ñ", "&ntilde;");
+                }
+
+            } else if (nombre.charAt(i) == 'Ñ') {
+                if (titulonuevo.equals("")) {
+                    titulonuevo = reemplazar(nombre, "Ñ", "&Ntilde;");
+                } else {
+                    titulonuevo = reemplazar(titulonuevo, "Ñ", "&Ntilde;");
+                }
+
+            }
+
+        }
+
+        return titulonuevo;
+    }
+
+    public static String reemplazar(String cadena, String busqueda, String reemplazo) {
+        return cadena.replaceAll(busqueda, reemplazo);
+    }
+
     public List<String> generarTitulo(Archivo archivoRaiz, String TituloMenu) {
         List<String> lineasHTML = new ArrayList<>();
+
         lineasHTML.add("<div class=\"sidebar-header\">");
-        lineasHTML.add("<h3>" + TituloMenu + "</h3>");
+        lineasHTML.add("<h3>" + generarnombres(TituloMenu) + "</h3>");
         lineasHTML.add("</div>");
         return lineasHTML;
     }
 
-    public List<String> generarLogo(Archivo archivoRaiz, String imagen) {        
+    public List<String> generarLogo(Archivo archivoRaiz, String imagen) {
         List<String> lineasHTML = new ArrayList<>();
         lineasHTML.add("<div align=\"right\">");
-        lineasHTML.add(" <img  src=\""+imagen+"\" class=\"logo\" style=\"width:100px;height:100px;\">");
+        lineasHTML.add(" <img  src=\"" + imagen + "\" class=\"logo\" style=\"width:100px;height:100px;\">");
         lineasHTML.add("</div>");
         return lineasHTML;
     }
 
     public List<String> tituloIndex(Archivo archivoRaiz, String TituloIndex) {
+
         List<String> lineasHTML = new ArrayList<>();
-        lineasHTML.add("<span >" + TituloIndex + "</span>");
+        lineasHTML.add("<span >" + generarnombres(TituloIndex) + "</span>");
         return lineasHTML;
     }
 
     public List<String> nombreBoton(Archivo archivoRaiz, String nombreBoton) {
+        String nombreBtn = "Menú";
         List<String> lineasHTML = new ArrayList<>();
-        lineasHTML.add("<span >" + nombreBoton + "</span>");
+        lineasHTML.add("<span >" + generarnombres(nombreBtn) + "</span>");
         return lineasHTML;
     }
 
@@ -290,11 +590,11 @@ public class GenDocUtil {
                 lineasProcesadas.addAll(lineasLogo);
             } else if (linea.contains("<!-- inicio nombreMenu -->")) {
                 List<String> lineasnombreMenu = new ArrayList<>();
-                lineasnombreMenu = nombreBoton(archivoRaiz,nombreMenu);
+                lineasnombreMenu = nombreBoton(archivoRaiz, nombreMenu);
                 lineasProcesadas.addAll(lineasnombreMenu);
-            }else if(linea.contains("<!-- inicio tituloIndex -->")){
+            } else if (linea.contains("<!-- inicio tituloIndex -->")) {
                 List<String> lineastituloIndex = new ArrayList<>();
-                lineastituloIndex = tituloIndex(archivoRaiz,TituloIndex);
+                lineastituloIndex = tituloIndex(archivoRaiz, TituloIndex);
                 lineasProcesadas.addAll(lineastituloIndex);
             }
         }
@@ -308,7 +608,7 @@ public class GenDocUtil {
      * @param rutaPlantillaHTML
      * @param rutaArchivoResultado
      */
-    public void generarArchivoFinalHTML(String directorioInicial, String rutaPlantillaHTML, String rutaArchivoResultado, List<String> extension, String TipoG, String TituloMenu, String nombreMenu, String TituloIndex,String imagen) {
+    public void generarArchivoFinalHTML(String directorioInicial, String rutaPlantillaHTML, String rutaArchivoResultado, List<String> extension, String TipoG, String TituloMenu, String nombreMenu, String TituloIndex, String imagen) {
         List<String> lineasHTML = null;
         List<String> lineasProcesadas = null;
         try {
