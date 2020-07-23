@@ -51,6 +51,12 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
 
         initComponents();
+
+        this.setExtendedState(MAXIMIZED_BOTH);
+      
+        int panelX = (getWidth() - jPanel1.getWidth() - getInsets().left - getInsets().right) / 2;
+        int panelY = ((getHeight() - jPanel1.getHeight() - getInsets().top - getInsets().bottom) / 2);
+        jPanel1.setLocation(panelX, panelY);
         label1.setVisible(false);
         txtMenuArchivoG.setText("menu");
         String carpetaActual = null;
@@ -382,7 +388,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel7.setText("Seleccionar:");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("Seleccione Tipo Extención:");
+        jLabel8.setText("Seleccione Tipo Extensión:");
 
         cbxExtension.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxExtension.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Generar Todas", "Seleccionar extensión" }));
@@ -663,15 +669,15 @@ public class Principal extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    public void MensajeTiempoEspera(){
-        if(cmdGenerar.isRolloverEnabled()){
-           LabelProgreso.setVisible(true); 
-           JOptionPane.showMessageDialog(rootPane, "A Continuación \n"+"Se generará menú: "+txtMenuArchivoG.getText());
+    public void MensajeTiempoEspera() {
+        if (cmdGenerar.isRolloverEnabled()) {
+            LabelProgreso.setVisible(true);
+            JOptionPane.showMessageDialog(rootPane, "A Continuación \n" + "Se generará menú: " + txtMenuArchivoG.getText());
         }
     }
     private void cmdGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdGenerarActionPerformed
         MensajeTiempoEspera();
-      
+
         try {
             //------------
             File directorio = new File(""); //Creas un nuevo directorio a nivel de tu jar.
